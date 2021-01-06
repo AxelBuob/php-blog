@@ -1,0 +1,2 @@
+RewriteEngine on
+ErrorDocument 404 http://localhost/~axel/php-blog/views/404.php
