@@ -4,3 +4,7 @@
     $query = $query->fetchAll(PDO::FETCH_OBJ);
     return $query;
   }
+
+  function insertComment($db,$post) {
+    
+  }

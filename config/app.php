@@ -3,6 +3,7 @@
   $root = $_SERVER['DOCUMENT_ROOT'].'/php-blog/';
   $host = '/~axel/php-blog/';
 
+
   // DB
   $server_name = $_SERVER['HTTP_HOST'];
   $db_name = "php-blog";

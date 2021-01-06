@@ -7,6 +7,10 @@
   $article = getArticleId($db);
   $comments = getAllComments($db,$article->id);
 
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $error = insert($db,$article->id,$_POST);
+  }
+
   include($root.'/includes/header.php');
 ?>
   <header>
@@ -20,7 +24,7 @@
   foreach ($comments as $comment) {
 ?>
   <li>
-    <b><?php echo $comment->author; ?></b>
+    <b><?php echo $comment->name; ?></b>
     <em><?php echo $comment->date; ?></em>
     <p><?php echo $comment->comment; ?></p>
   </li>
@@ -28,11 +32,13 @@
   }
 ?>
   </ul>
-  <form action="<?php echo $host.'controllers/commentsController.php'; ?>" method="POST">
-    <label for="author">Enter your name:</label><br>
+  <form action="<?php echo htmlspecialchars('#'); ?>" method="POST">
+    <label for="name">Enter your name:</label><br>
     <input type="text" name="name"><br>
+    <p><?php echo $error['name'] = isset($error['name']) ? $error['name'] : ''; ?></p>
     <label for="comment">Enter your message:</label><br>
     <textarea name="comment" rows="8" cols="80"></textarea><br>
+    <p><?php echo $error['comment'] = isset($error['comment']) ? $error['comment'] : ''; ?></p>
     <input type="submit">
   </form>
 <?php
