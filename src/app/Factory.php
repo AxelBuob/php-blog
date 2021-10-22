@@ -61,4 +61,9 @@ class Factory
         header("HTTP/1.0 404 Not Found");
         header('Location:index.php?p=404');
     }
+    public function forbidden()
+    {
+        header("HTTP/1.0 403 Forbidden");
+        header('Location:index.php?p=403');
+    }
 }

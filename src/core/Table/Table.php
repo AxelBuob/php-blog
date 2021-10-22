@@ -22,6 +22,11 @@ class Table
         }
     }
 
+    public function getDB()
+    {
+        return $this->db;
+    }
+
     public function query($statement, $attributes, $class_name, $unique)
     {
         if($attributes === null)
@@ -42,5 +47,49 @@ class Table
     public function find($id)
     {
         return $this->query("SELECT * FROM " . $this->table . " WHERE id = ?", [$id], str_replace('Table', 'Entity', get_called_class()), true);
+    }
+
+    public function update($id, $fields)
+    {
+        $sql_parts = [];
+        $attributes = [];
+        foreach($fields as $key => $value)
+        {
+            $sql_parts[] = "$key = ?";
+            $attributes[] = $value;
+        }
+        $sql_part = implode(',', $sql_parts);
+        $attributes[] = $id;
+
+        return $this->query("UPDATE {$this->table} SET {$sql_part} WHERE id = ?", $attributes, null, true);
+    }
+
+    public function create($fields)
+    {
+        $sql_parts = [];
+        $attributes = [];
+        foreach ($fields as $key => $value) {
+            $sql_parts[] = "$key = ?";
+            $attributes[] = $value;
+        }
+        $sql_part = implode(',', $sql_parts);
+
+        return $this->query("INSERT INTO {$this->table} SET {$sql_part}", $attributes, null, true);
+    }
+
+    public function extract($key, $value)
+    {
+        $records = $this->all();
+        $return = [];
+        foreach($records as $v)
+        {
+            $return[$v->$key] = $v->$value;
+        }
+        return $return;
+    }
+
+    public function delete($id)
+    {
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id], null, true);
     }
 }

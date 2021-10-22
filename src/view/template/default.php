@@ -1,3 +1,9 @@
+<?php
+use Core\Auth\Auth;
+$auth = new Auth($app->getDB());
+$logged = $auth->logged();
+?>
+
 <!DOCTYPE html>
 <html lang="fr" data-theme="auto">
 
@@ -13,13 +19,17 @@
     <header>
         <nav>
             <ul>
-                <li><a href="?p=home">Accueil</a></li>
-                <li><a href="?p=contact">Contact</a></li>
-                <li><a href="?p=resume">CV</a></li>
+                <li><a href="index.php?p=home">Accueil</a></li>
+                <li><a href="index.php?p=contact">Contact</a></li>
+                <li><a href="index.php?p=resume">CV</a></li>
             </ul>
             <ul>
-                <li><a href="?p=signin"><button>Connection</button></a></li>
-                <li><a href="?p=signup"><button>Inscription</button></a></li>
+                <?php if ($logged === false) : ?>
+                    <li><a href="index.php?p=signin"><button>Connection</button></a></li>
+                    <li><a href="index.php?p=signup"><button>Inscription</button></a></li>
+                <?php else : ?>
+                    <li><a href="index.php?p=signout"><button>Déconnection</button></a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

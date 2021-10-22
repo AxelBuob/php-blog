@@ -31,10 +31,20 @@ class MysqlDatabase
         return $this->pdo;
     }
 
-    public function query($statement, $class_name, $unique)
+    public function query($statement, $class_name = null, $unique = false)
     {
         $query = $this->getPDO()->query($statement);
-        $query->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        if (strpos($statement, 'UPDATE') === 0 || strpos($statement, 'INSERT') === 0 || strpos($statement, 'DELETE') === 0) {
+            return $query;
+        }
+        if($class_name === null)
+        {
+            $query->setFetchMode(PDO::FETCH_OBJ);
+        }
+        else
+        {
+            $query->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        }
         if ($unique === true) {
             $query = $query->fetch();
         } else {
@@ -43,16 +53,29 @@ class MysqlDatabase
         return $query;
     }
 
-    public function prepare($statement, $attributes, $class_name, $unique)
+    public function prepare($statement, $attributes, $class_name = null, $unique = false)
     {
         $query = $this->getPDO()->prepare($statement);
-        $query->execute($attributes);
-        $query->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        $result = $query->execute($attributes);
+        if(strpos($statement, 'UPDATE') === 0 || strpos($statement, 'INSERT') === 0 || strpos($statement, 'DELETE') === 0)
+        {
+            return $result;
+        }
+        if ($class_name === null) {
+            $query->setFetchMode(PDO::FETCH_OBJ);
+        } else {
+            $query->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        }
         if ($unique === true) {
             $query = $query->fetch();
         } else {
             $query = $query->fetchAll();
         }
         return $query;
+    }
+
+    public function lastInsertId()
+    {
+        return $this->getPDO()->lastInsertId();
     }
 }

@@ -19,10 +19,10 @@ class PostTable extends \Core\Table\Table
         );
     }
 
-    public function find($post_id)
+    public function findwithCategory($post_id)
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%d %M %Y') AS creation_date, category.id AS category_id,  category.name AS category_name
+            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%d %M %Y') AS creation_date, category.id AS post_category,  category.name AS category_name
             FROM post
             LEFT JOIN category
                 ON post.post_category = category.id

@@ -27,7 +27,7 @@ $app->setTitle($post->name);
 <h1><?= $post->name; ?></h1>
 <p>
     <small>
-        Publié le <?= $post->creation_date; ?> par <a href="#">Axel Buob</a> dans la catégorie <a href="<?= $post->category_url; ?>"><?= $post->category_name; ?></a>
+        Publié le <?= $post->creation_date; ?> par </a>
     </small>
 </p>
 <p>
