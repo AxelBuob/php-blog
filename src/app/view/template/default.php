@@ -22,10 +22,12 @@
                     <li><a href="?p=admin.post.index">Administration</a></li>
                 <?php endif; ?>
                 <?php if ($auth) : ?>
+                    <li><a href="?p=user.account">Mon compte</a></li>
                     <li><a href="?p=user.signout"><button>Déconnection</button></a></li>
 
                 <?php else : ?>
                     <li><a href="?p=user.signin"><button>Connection</button></a></li>
+                    <li><a href="?p=user.signup"><button>Inscription</button></a></li>
                 <?php endif; ?>
             </ul>
         </nav>
