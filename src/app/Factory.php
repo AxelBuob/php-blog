@@ -29,6 +29,12 @@ class Factory
         \Core\Autoloader::register();
     }
 
+    public function getTable($name)
+    {
+        $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
+        return new $class_name($this->getDB());
+    }
+
     public function getDB()
     {
         $config = Config::getConfig(ROOT . '/config/config.php');
@@ -38,6 +44,16 @@ class Factory
         }
         return $this->db;
 
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     public function notFound()
