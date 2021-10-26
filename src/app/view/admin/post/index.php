@@ -1,12 +1,3 @@
-<nav>
-    <ul>
-        <li>Administrer :</li>
-    </ul>
-    <ul>
-        <li><a href="?p=admin.post.index">Articles</a></li>
-        <li><a href="?p=admin.category.index">Categories</a></li>
-    </ul>
-</nav>
 <p>
     <a href="?p=admin.post.add"><button>Ajouter un article</button></a>
 </p>
