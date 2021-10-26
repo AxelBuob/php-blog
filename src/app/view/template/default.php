@@ -50,6 +50,7 @@
                     <li><a href="?p=admin.post.index">Articles</a></li>
                     <li><a href="?p=admin.category.index">Categories</a></li>
                     <li><a href="?p=admin.user.index">Utilisateurs</a></li>
+                    <li><a href="?p=admin.comment.index">Commentaires</a></li>
                 </ul>
             </nav>
         <?php endif; ?>
