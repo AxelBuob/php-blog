@@ -71,7 +71,10 @@ class Form
         $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
 
         $type = isset($options['type']) ? $options['type'] : 'text';
+        //$value = isset($options['value']) ? $options['value'] : '';
+
         $label = "<label for='{$name}'>{$label}</label>";
+
         if($type === 'textarea')
         {
             $input = "<textarea name='{$name}'>{$this->getValue($name)}</textarea>";
@@ -79,6 +82,10 @@ class Form
         elseif($type === 'password' || $type === 'email')
         {
             $input = "<input type='{$type}' name='{$name}' placeholder='{$placeholder}'>";
+        }
+        elseif($type === 'hidden' && isset($options['value']))
+        {
+            $input = "<input type='{$type}' name='{$name}' value='{$options['value']}'>";
         }
         else {
             $input = "<input type='{$type}' name='{$name}' placeholder='{$placeholder}' value='{$this->getValue($name)}'>";
