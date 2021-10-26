@@ -32,15 +32,27 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        
-        <?php 
-            if(isset($_SESSION['flash']))
-            {
-                var_dump($_SESSION['flash']);
-                unset($_SESSION['flash']);
-            }
+
+        <?php
+        if (isset($_SESSION['flash'])) {
+            var_dump($_SESSION['flash']);
+            unset($_SESSION['flash']);
+        }
         ?>
+        <?php if ($admin) : ?>
+            <nav>
+                <ul>
+                    <li>Administration :</li>
+                </ul>
+                <ul>
+                    <li><a href="?p=admin.post.index">Articles</a></li>
+                    <li><a href="?p=admin.category.index">Categories</a></li>
+                    <li><a href="?p=admin.user.index">Utilisateurs</a></li>
+                </ul>
+            </nav>
+        <?php endif; ?>
         <?= $content; ?>
     </main>
     <footer>
