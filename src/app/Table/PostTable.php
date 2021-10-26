@@ -34,7 +34,6 @@ class PostTable extends \Core\Table\Table
         );
     }
 
-
     public function lastByCategory($category_id)
     {
         return $this->query(

@@ -22,7 +22,11 @@ class PostController extends AppController
     public function add()
     {
         if (!empty($_POST)) {
-            $result = $this->post->create(['name' => $_POST['name'], 'content' => $_POST['content'], 'post_category' => $_POST['post_category']]);
+            $result = $this->post->create([
+                'name' => $_POST['name'], 
+                'content' => $_POST['content'], 
+                'post_category' => $_POST['post_category']
+            ]);
             if ($result) {
                 header('Location: ?p=admin.post.index');
             }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use Core\Html\Form;
 
 class PostController extends AppController
 {
@@ -10,6 +11,8 @@ class PostController extends AppController
         parent::__construct();
         $this->loadModel('post');
         $this->loadModel('category');
+        $this->loadModel('comment');
+        $this->loadModel('user');
     }
 
     public function index()
@@ -41,7 +44,9 @@ class PostController extends AppController
         }
         $categories = $this->category->all();
         $category = $this->category->find($post->id);
+        $comments = $this->comment->findAll($post->id);
+        $form = new Form($_POST);
         $this->setTitle($post->name);
-        $this->render('post.post', compact('post', 'categories', 'category'));
+        $this->render('post.post', compact('post', 'categories', 'category', 'form', 'comments'));
     }
 }
