@@ -25,11 +25,11 @@ class CommentController extends AppController
                 'comment_status' => 2
             ]);
             if ($result) {
-                $_SESSION['flash'] = 'Merci votre commentaire a été soumis à validation';
+                $_SESSION['flash']['success'] = 'Merci votre commentaire a été soumis à validation';
                 header('Location: ?p=post.show&id=' . $_POST['comment_post']);
                 die();
             } else {
-                $_SESSION['flash'] = 'Oups! Une erreur est survenus';
+                $_SESSION['flash']['danger'] = 'Oups! Une erreur est survenus';
                 header('Location: ?p=post.show&id=' . $_POST['comment_post']);
                 die();
             }

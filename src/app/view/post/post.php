@@ -1,51 +1,53 @@
-<section>
-    <nav>
-        <ul>
-            <li><strong>Catégories:</strong></li>
-        </ul>
-        <ul>
-            <?php foreach ($categories as $category) : ?>
-                <li><a href="<?= $category->url; ?>"><?= $category->name; ?> | </a></li>
-            <?php endforeach; ?>
-        </ul>
-    </nav>
-</section>
-
-<h1><?= $post->name; ?></h1>
-<p>
-    <small>
-        Publié le <?= $post->creation_date; ?> par <a href="#">Axel Buob</a> dans la catégorie <a href="<?= $category->url; ?>"><?= $category->name; ?></a>
-    </small>
-</p>
-<p>
-    <?= $post->content; ?>
-</p>
-
-<section>
+<div class="container mt-5">
+    <p>
+        <a class="text-dark" href="<?= $post->user; ?>"><?= $post->user_name; ?></a>, <?= $post->creation_date; ?> dans la catégorie <a class="link-dark" href="<?= $post->category; ?>"><?= $post->category_name; ?></a>
+    </p>
+</div>
+<div class="container">
+    <h1 class=""><?= $post->name; ?></h1>
+    <figure class="figure mt-3">
+        <img src="https://picsum.photos/1200?random=<?= $post->id; ?>" class="figure-img rounded" alt="" height="300px" width="auto">
+        <figcaption class="figure-caption text-end">A caption for the above image.</figcaption>
+    </figure>
+    <p><?= $post->content; ?>
+</div>
+</div>
+<div class="bg-light py-5">
     <?php if ($comments) : ?>
-        <?php foreach ($comments as $comment) : ?>
-            <article>
-                <p>Par <?= $comment->first_name; ?> <?= $comment->last_name; ?> le <?= $comment->creation_date; ?></p>
-                <p><?= $comment->content; ?></p>
-                <?php if ($auth && $comment->comment_user === $_SESSION['user_id']) : ?>
-                    <form action="?p=comment.delete" method="post">
-                        <?= $form->input('comment_id', '','',['type' => 'hidden', 'value' => $comment->id]); ?>
-                        <?= $form->input('post_id', '','',['type' => 'hidden', 'value' => $comment->comment_post]); ?>
-                        <?= $form->submit('Supprimer'); ?>
+        <div class="container">
+            <h5 class="text-uppercase">Les derniers commentaires</h5>
+            <?php foreach ($comments as $comment) : ?>
+                <figure class="mb-0 mt-3">
+                    <blockquote class="blockquote">
+                        <?= $comment->content; ?>
+                    </blockquote>
+                    <figcaption class="blockquote-footer mb-0">
+                        <?= $comment->creation_date; ?> par <cite title="Source Title"><a class="link-dark" href="#"><?= $comment->user_name; ?></a></cite>
+                    </figcaption>
+                </figure>
+                <?php if ($auth && $comment->user_id === $_SESSION['user_id']) : ?>
+                    <form class="mt-3" action="?p=comment.delete" method="post">
+                        <?= $form->input('comment_id', '', '', ['type' => 'hidden', 'value' => $comment->id]); ?>
+                        <?= $form->input('post_id', '', '', ['type' => 'hidden', 'value' => $comment->post_id]); ?>
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>
                     </form>
                 <?php endif; ?>
-            </article>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     <?php endif; ?>
-    <h2>Laisser un commentaire</h2>
-    <?php if ($auth) : ?>
-        <form action="?p=comment.add" method="post">
-            <?= $form->input('comment_post', '', '', ['type' => 'hidden', 'value' => $post->id]); ?>
-            <?= $form->input('content', 'Commentaire', '', ['type' => 'textarea']); ?>
-            <?= $form->submit('Laisser un commentaire'); ?>
-        </form>
-    <?php else : ?>
-        <p>Vous devez être connecté ou créer un compte pour laisser un commentaire</p>
-        <a href="?p=user.signin">Se connecter</a> <a href="?p=user.signup">S'inscrire</a>
-    <?php endif; ?>
-</section>
+    <div class="container mt-5">
+        <h5 class="text-uppercase">Laisser un commentaire</h5>
+        <?php if ($auth) : ?>
+            <form action="?p=comment.add" method="post">
+                <?= $form->input('comment_post', '', '', ['type' => 'hidden', 'value' => $post->id]); ?>
+                <?= $form->input('content', '', '', ['type' => 'textarea']); ?>
+                <button type="submit" class="mt-3 btn btn-sm btn-warning text-uppercase text-light text-dark">Laisser un commentaire</button>
+            </form>
+        <?php else : ?>
+            <div role="alert" class="alert alert-info">
+                <p>Vous devez être connecté pour pouvoir laisser un commentaire.</p>
+                <a class="link-dark" href="?p=user.signin">Se connecter</a> / <a class="link-dark" href="?p=user.signup">S'inscrire</a>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

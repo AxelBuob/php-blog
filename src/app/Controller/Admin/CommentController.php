@@ -32,13 +32,12 @@ class CommentController extends AppController
 
             if($result)
             {
-                $_SESSION['flash'] = 'Le status du commentaire a bien été modifié.';
+                $_SESSION['flash']['success'] = 'Le status du commentaire a bien été modifié.';
                 header('Location: ?p=admin.comment.index');
                 die();
             }
         }
         $status = $this->status->extract('id', 'name'); 
-        
         $form = new Form($comment);
         $this->render('admin.comment.show', compact('comment', 'status', 'form'));
     }

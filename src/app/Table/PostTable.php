@@ -5,13 +5,44 @@ namespace App\Table;
 class PostTable extends \Core\Table\Table
 {
 
-    public function last()
+    public function find($id)
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%d %M %Y') AS creation_date, category.id AS category_id, category.name AS category_name
-            FROM post 
-            LEFT JOIN category 
+            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
+            post.post_status, post.post_category, post.post_user,
+            category.name AS category_name , 
+            CONCAT(user.first_name, ' ', user.last_name) AS user_name, 
+            status.name AS status_name 
+            FROM post
+            LEFT JOIN category
                 ON post.post_category = category.id
+            LEFT JOIN user
+                ON post.post_user = user.id
+            LEFT JOIN status
+                ON post.post_status = status.id 
+            WHERE post.id = ?
+            ",
+            [$id],
+            get_called_class(),
+            true
+        );
+    }
+
+    public function all()
+    {
+        return $this->query(
+            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
+            post.post_status, post. post_category, post.post_user,
+            category.name AS category_name , 
+            CONCAT(user.first_name, ' ', user.last_name) AS user_name,
+            status.name AS status_name 
+            FROM post
+            LEFT JOIN category
+                ON post.post_category = category.id
+            LEFT JOIN user
+                ON post.post_user = user.id
+            LEFT JOIN status
+                ON post.post_status = status.id 
             ORDER BY post.creation_date DESC",
             null,
             get_called_class(),
@@ -19,28 +50,21 @@ class PostTable extends \Core\Table\Table
         );
     }
 
-    public function findwithCategory($post_id)
+    public function allinCategory($category_id)
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%d %M %Y') AS creation_date, category.id AS post_category,  category.name AS category_name
+            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date,
+            post.post_category, post.post_user, post.post_status, 
+            category.name AS category_name , 
+            CONCAT(user.first_name, ' ', user.last_name) AS user_name,
+            status.name AS status_name 
             FROM post
             LEFT JOIN category
                 ON post.post_category = category.id
-            WHERE post.id = ?
-            ",
-            [$post_id],
-            get_called_class(),
-            true
-        );
-    }
-
-    public function lastByCategory($category_id)
-    {
-        return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%d %M %Y') AS creation_date, category.id AS category_id,  category.name AS category_name
-            FROM post
-            LEFT JOIN category
-                ON post.post_category = category.id
+            LEFT JOIN user
+                ON post.post_user = user.id
+            LEFT JOIN status
+                ON post.post_status = status.id 
             WHERE post_category = ?
             ORDER BY post.creation_date DESC",
             [$category_id],

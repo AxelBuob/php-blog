@@ -21,6 +21,16 @@ class PostEntity extends \Core\Entity\Entity
 
     public function getCategory()
     {
-        return '?p=category&id=' . $this->category_id;
+        return '?p=post.category&id=' . $this->post_category;
+    }
+
+    public function getGithub()
+    {
+        return 'http://github.com/axelbuob/';
+    }
+
+    public function getUser()
+    {
+        return '?p=user.show&id=' . $this->post_user;
     }
 }
