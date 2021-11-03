@@ -12,7 +12,7 @@ class CategoryTable extends \Core\Table\Table
             WHERE category.id = ?
             ",
             [$id],
-            get_called_class(),
+            null,
             true
         );
     }

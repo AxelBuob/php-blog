@@ -24,6 +24,6 @@ class UserTable extends \Core\Table\Table
             FROM user
             LEFT JOIN role
                 ON user.user_role = role.id"
-        , null, get_called_class(), false);
+        , null, null, false);
     }
 }

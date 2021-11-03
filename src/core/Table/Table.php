@@ -31,11 +31,11 @@ class Table
     {
         if($attributes === null)
         {
-            return $this->db->query($statement,str_replace('Table', 'Entity', get_called_class()), $unique);
+            return $this->db->query($statement, $class_name, $unique);
         }
         else
         {
-            return $this->db->prepare($statement, $attributes, str_replace('Table', 'Entity', get_called_class()), $unique);
+            return $this->db->prepare($statement, $attributes,  $class_name, $unique);
         }
     }
 

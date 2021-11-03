@@ -21,7 +21,7 @@ class CommentTable extends \Core\Table\Table
             LEFT JOIN post
                 ON comment.comment_post = post.id
             ORDER by comment.creation_date DESC"
-        ,null, get_called_class(), false);
+        ,null, null, false);
     }
 
     public function find($id)
@@ -34,7 +34,7 @@ class CommentTable extends \Core\Table\Table
             LEFT JOIN user 
              ON comment.comment_user = user.id
             WHERE comment.id = ?"
-        , [$id], get_called_class(), true);
+        , [$id], null, true);
     }
 
     public function findAll($post_id)
@@ -50,6 +50,6 @@ class CommentTable extends \Core\Table\Table
             LEFT JOIN status 
                 ON comment_status = status.id
             WHERE comment_post = ? AND comment.comment_status = 3"
-        , [$post_id], get_called_class(), false);
+        , [$post_id], null, false);
     }
 }

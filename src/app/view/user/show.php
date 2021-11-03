@@ -4,8 +4,8 @@
     <div class="my-3">
         <p>Inscris depuis le: <?= date('j F Y', strtotime($user->confirmed_at)); ?></p>
         <p>Ville: <?= $user->city; ?></p>
-        <p>Twitter: <a href="<?= $user->twitter; ?>"><?= $user->twitter; ?></a></p>
-        <p>Linkedin: <a href="<?= $user->linkedin; ?>"><?= $user->linkedin; ?></a></p>
-        <p>Github: <a href="<?= $user->github; ?>"><?= $user->github; ?></a></p>
+        <p>Twitter: <a  class="link-dark"href="<?= $user->twitter; ?>"><?= $user->twitter; ?></a></p>
+        <p>Linkedin: <a  class="link-dark"href="<?= $user->linkedin; ?>"><?= $user->linkedin; ?></a></p>
+        <p>Github: <a class="link-dark" href="<?= $user->github; ?>"><?= $user->github; ?></a></p>
     </div>
 </div>

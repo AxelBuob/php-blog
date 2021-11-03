@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title; ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../public/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../public/img/favicon/favicon-32x32.png">
@@ -16,24 +17,15 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Custom font -->
     <style>
-        @import url('https://use.typekit.net/nbt4tpz.css');
-
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap');
         :root {
-            --bs-font-sans-serif: 'Proxima Nova', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-
-        .mw-500 {
-            max-width: 500px;
-        }
-
-        .mw-600 {
-            max-width: 600px;
+            --bs-font-sans-serif: 'Roboto Mono', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
     </style>
 </head>
 
 <body class="d-flex flex-column h-100">
-        <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="?p=page.home"><img src="../public/img/logo.png" alt="Logo" width="30" height="auto"></a>
@@ -109,7 +101,7 @@
     <main class="flex-shrink-0">
         <!-- FLASH -->
         <?php if (isset($_SESSION['flash'])) : ?>
-            <?php foreach($_SESSION['flash'] as $type => $message ) : ?>
+            <?php foreach ($_SESSION['flash'] as $type => $message) : ?>
                 <div class="container alert mt-5 alert-<?= $type; ?>">
                     <?= $message; ?>
                 </div>
@@ -120,20 +112,20 @@
         <?= $content; ?>
     </main>
     <!-- FOOTER -->
-    <footer class="footer mt-auto py-5 bg-warning">
+    <footer class="footer mt-auto py-2 bg-warning">
         <div class="container">
             <ul class="nav flex-row justify-content-center">
-                <li class="nav-item mx-5">
+                <li class="nav-item mx-3">
                     <a href="#" class="nav-link link-dark px-2">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
                 </li>
-                <li class="nav-item mx-5">
+                <li class="nav-item mx-3">
                     <a href="#" class="nav-link link-dark px-2">
                         <i class="fab fa-twitter fa-2x"></i>
                     </a>
                 </li>
-                <li class="nav-item mx-5">
+                <li class="nav-item mx-3">
                     <a href="#" class="nav-link link-dark px-2">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>

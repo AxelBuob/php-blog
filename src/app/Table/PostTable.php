@@ -7,6 +7,8 @@ class PostTable extends \Core\Table\Table
 
     public function find($id)
     {
+
+        
         return $this->query(
             "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
             post.post_status, post.post_category, post.post_user,
@@ -23,7 +25,7 @@ class PostTable extends \Core\Table\Table
             WHERE post.id = ?
             ",
             [$id],
-            get_called_class(),
+            '\App\Entity\PostEntity',
             true
         );
     }
@@ -45,7 +47,7 @@ class PostTable extends \Core\Table\Table
                 ON post.post_status = status.id 
             ORDER BY post.creation_date DESC",
             null,
-            get_called_class(),
+            '\App\Entity\PostEntity',
             false
         );
     }
@@ -68,7 +70,7 @@ class PostTable extends \Core\Table\Table
             WHERE post_category = ?
             ORDER BY post.creation_date DESC",
             [$category_id],
-            get_called_class(),
+            '\App\Entity\PostEntity',
             false
         ); 
     }

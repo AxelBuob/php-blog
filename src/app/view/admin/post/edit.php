@@ -1,4 +1,3 @@
-<?php var_dump($post); ?>
 <div class="container my-5">
     <form method="post">
         <?= $form->input('name', "Titre"); ?>
@@ -12,8 +11,5 @@
 <script>
     tinymce.init({
         selector: 'textarea',
-        // plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-        // toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
-        // toolbar_mode: 'floating',
     });
 </script>
