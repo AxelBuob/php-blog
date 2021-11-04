@@ -8,6 +8,11 @@ class PageController extends AppController
     public function __construct()
     {
         parent::__construct();
+        $this->loadModel('skill');
+        $this->loadModel('formation');
+        $this->loadModel('experience');
+        $this->loadModel('interest');
+        $this->loadModel('user');
     }
 
     public function contact()
@@ -49,6 +54,11 @@ class PageController extends AppController
 
     public function resume()
     {
-        $this->render('page.resume');
+        $skills = $this->skill->all();
+        $experiences = $this->experience->all();
+        $formations = $this->formation->all();
+        $interests = $this->interest->all();
+        $author = $this->user->find('1');
+        $this->render('page.resume',compact('skills','experiences','formations','interests','author'));
     }
 }

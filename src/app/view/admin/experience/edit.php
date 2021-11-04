@@ -1,6 +1,6 @@
 <div class="container my-5">
     <form method="post">
-        <?= $form->input('title', 'Titre', ''); ?>
+        <?= $form->input('name', 'Nom', ''); ?>
         <?= $form->input('company', 'Entreprise', ''); ?>
         <?= $form->input('city', 'Ville', ''); ?>
         <?= $form->input('postcode', 'Code postale', ''); ?>

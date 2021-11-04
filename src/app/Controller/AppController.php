@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-use App\Factory;
 
 class AppController extends \Core\Controller\Controller
 {

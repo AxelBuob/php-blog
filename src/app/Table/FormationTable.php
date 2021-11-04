@@ -19,7 +19,7 @@ class FormationTable extends \Core\Table\Table
     public function all()
     {
         return $this->query(
-            "SELECT * 
+            "SELECT name, school, postcode, city, DATE_FORMAT(start_date, '%M %Y') as start_date, DATE_FORMAT(end_date, '%M %Y') as end_date
             FROM formation",
             null,
             null,

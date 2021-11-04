@@ -25,7 +25,7 @@ class ExperienceController extends \App\Controller\Admin\AppController
             $start_date = ($_POST['start_date'] === '') ? null : $_POST['start_date'];
             $end_date = ($_POST['end_date'] === '') ? null : $_POST['end_date'];
             $result = $this->experience->create([
-                'title' => $_POST['title'],
+                'name' => $_POST['name'],
                 'company' => $_POST['company'],
                 'city' => $_POST['city'],
                 'postcode' => $_POST['postcode'],

@@ -6,7 +6,7 @@
         <table class="table">
             <thead>
                 <th>#</th>
-                <th>Titre</th>
+                <th>Nom</th>
                 <th>Company</th>
                 <th>Début</th>
                 <th>Fin</th>
@@ -16,7 +16,7 @@
                 <?php foreach ($experiences as $experience) : ?>
                     <tr>
                         <td><?= $experience->id; ?></td>
-                        <td><?= $experience->title; ?></td>
+                        <td><?= $experience->name; ?></td>
                         <td><?= $experience->company; ?></td>
                         <td><?= $experience->start_date; ?></td>
                         <td><?= $experience->end_date; ?></td>

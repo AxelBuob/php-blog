@@ -4,6 +4,7 @@
     <form action="#" method="post">
         <?= $form->input('first_name', 'Prénom', 'Votre prénom'); ?>
         <?= $form->input('last_name', 'Nom', 'Votre nom'); ?>
+        <?= $form->input('job', 'Job', 'Votre job'); ?>
         <?= $form->input('about', 'À propos', '', ['type' => 'textarea']); ?>
         <?= $form->input('city', 'Ville', ''); ?>
         <?= $form->input('twitter', 'Twitter', 'Lien vers votre compte Twitter'); ?>

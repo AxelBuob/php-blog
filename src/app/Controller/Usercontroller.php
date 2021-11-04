@@ -181,6 +181,10 @@ class UserController extends AppController
                 elseif (!empty($_POST['about']) && strlen($_POST['about']) > '255')
                 {
                     $_SESSION['flash']['warning']  = 'Maximum charactère 255';
+                } 
+                elseif (!empty($_POST['job']) && strlen($_POST['job']) > '255'&& !preg_match($char, $_POST['last_name']))
+                {
+                    $_SESSION['flash']['warning']  = 'Veuillez renseigner un job valide';
                 }
                 elseif (!empty($_POST['city']) && !preg_match($char, $_POST['city']))
                 {
@@ -203,6 +207,7 @@ class UserController extends AppController
                     $result = $this->user->update($_SESSION['user_id'],[
                         'first_name' => $_POST['first_name'],
                         'last_name' => $_POST['last_name'],
+                        'job' => $_POST['job'],
                         'about' => $_POST['about'],
                         'city' => $_POST['city'],
                         'twitter' => $_POST['twitter'],

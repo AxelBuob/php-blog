@@ -11,7 +11,7 @@ class UserTable extends \Core\Table\Table
         return $this->query('SELECT * FROM user WHERE email = ?', [$email], null, true);
     }
 
-    public function findUserId($id)
+    public function find($id)
     {
         return $this->query('SELECT * FROM user WHERE id = ?', [$id], null, true);
     }
