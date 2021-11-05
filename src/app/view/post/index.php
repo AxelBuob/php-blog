@@ -1,28 +1,32 @@
-<section>
-    <nav>
-        <ul>
-            <li><strong>Catégories:</strong></li>
-        </ul> 
-        <ul>
-            <?php foreach ($categories as $category) : ?>
-                <li>
-                    <a href="<?= $category->url; ?>"><?= $category->name; ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </nav>
-</section>
-
-<section>
-    <h1>Les derniers articles</h1>
-    <?php foreach ($posts as $post) : ?>
-        <article>
-            <h2><a href="<?= $post->url; ?>"><?= $post->name; ?></a></h2>
-            <p><?= $post->excerpt; ?></p>
-            <a href="<?= $post->url; ?>">Lire la suite</a>
-            <footer>
-                <p>Posté le <?= $post->creation_date; ?> par <a href="#">Axel Buob</a> dans la catégorie <a href="<?= $post->category; ?>"><?= $post->category_name; ?></a></p>
-            </footer>
-        </article>
-    <?php endforeach; ?>
+<section class="album container py-5">
+    <h1 class="mb-3">Les derniers articles</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <?php foreach ($posts as $post) : ?>
+            <?php if ($post->status_name === 'publish') : ?>
+                <div class="col">
+                    <div class="card border-0 shadow-sm">
+                        <img src="https://picsum.photos/500/300?random=<?= $post->id; ?>" alt="Demo" class="img-fluid" width="500" height="300">
+                        <div class="card-body">
+                            <h3 class="card-title text-uppercase"><?= $post->name; ?></h5>
+                                <div class="card-subtitle">
+                                    <p><em class="fw-light"><?= $post->creation_date; ?></em></p>
+                                </div>
+                                <p class="card-text"><?= $post->excerpt; ?></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="<?= $post->url; ?>" type="button" class="btn btn-sm btn-outline-dark">
+                                            <i class="fas fa-eye"></i>
+                                            <span class="d-none d-md-inline">Lire</span>
+                                        </a>
+                                    </div>
+                                    <a href="<?= $post->category; ?>" type="button" class="btn btn-sm btn-warning">
+                                        <span><?= $post->category_name; ?></span>
+                                    </a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif;  ?>
+        <?php endforeach; ?>
+    </div>
 </section>

@@ -73,22 +73,22 @@ class Form
         $type = isset($options['type']) ? $options['type'] : 'text';
         //$value = isset($options['value']) ? $options['value'] : '';
 
-        $label = "<label for='{$name}'>{$label}</label>";
+        $label = "<label class='mt-3 form-label' for='{$name}'>{$label}</label>";
 
         if($type === 'textarea')
         {
-            $input = "<textarea name='{$name}'>{$this->getValue($name)}</textarea>";
+            $input = "<textarea class='form-control' name='{$name}'>{$this->getValue($name)}</textarea>";
         }
         elseif($type === 'password' || $type === 'email')
         {
-            $input = "<input type='{$type}' name='{$name}' placeholder='{$placeholder}'>";
+            $input = "<input class='form-control'  type='{$type}' name='{$name}' placeholder='{$placeholder}'>";
         }
         elseif($type === 'hidden' && isset($options['value']))
         {
-            $input = "<input type='{$type}' name='{$name}' value='{$options['value']}'>";
+            $input = "<input class='form-control' type='{$type}' name='{$name}' value='{$options['value']}'>";
         }
         else {
-            $input = "<input type='{$type}' name='{$name}' placeholder='{$placeholder}' value='{$this->getValue($name)}'>";
+            $input = "<input class='form-control' type='{$type}' name='{$name}' placeholder='{$placeholder}' value='{$this->getValue($name)}'>";
         }
         return $label . $input;
     }
@@ -100,13 +100,14 @@ class Form
      */
     public function submit($value)
     {
-        return "<button type='submit'>{$value}</button>";
+        return "<div class='my-3' ><button class='btn btn-warning text-uppercase fw-light' type='submit'>{$value}</button></div>";
     }
 
     public function select($name, $label, $options)
     {
         $label = htmlspecialchars($label, ENT_QUOTES);
-        $input = "<select name={$name}>";
+        $input = "<select class='form-control' name={$name}>";
+        $label = "<label class='mt-3 form-label' for='{$name}'>{$label}</label>";
         foreach($options as $key =>$value)
         {
             $attributes = '';

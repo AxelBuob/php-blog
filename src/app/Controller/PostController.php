@@ -10,43 +10,41 @@ class PostController extends AppController
     {
         parent::__construct();
         $this->loadModel('post');
-        $this->loadModel('category');
         $this->loadModel('comment');
-        $this->loadModel('user');
     }
 
     public function index()
     {
-        $categories = $this->category->all();
-        $posts = $this->post->last();
-        $message = null;
-        $this->render('post.index', compact('posts', 'categories'));
+        $posts = $this->post->all();
+        $this->render('post.index', compact('posts'));
     }
+
     public function category()
     {
-        $posts = $this->post->lastByCategory($_GET['id']);
-        $categories = $this->category->all();
-        $category_name = $this->category->find($_GET['id']);
-        if ($category_name === false) {
-            $controller = new ErrorController;
-            $controller->notFound();
+        $posts = $this->post->allinCategory($_GET['id']);
+        if($posts) {
+            $this->render('post.category', compact('posts'));
         }
-        $this->setTitle($category_name->name);
-        $this->render('post.category', compact('posts', 'categories','category_name'));
+        else
+        {
+            header('Location: ?p=error.notfound');
+            die();
+        }
     }
     public function show()
     {
         $post = $this->post->find($_GET['id']);
-        if($post === false)
+        if($post)
         {
-            $controller = new ErrorController;
-            $controller->notFound();
+            $comments = $this->comment->findAll($post->id);
+            $form = new Form($_POST);
+            $this->setTitle($post->name);
+            $this->render('post.post', compact('post', 'form', 'comments'));
         }
-        $categories = $this->category->all();
-        $category = $this->category->find($post->id);
-        $comments = $this->comment->findAll($post->id);
-        $form = new Form($_POST);
-        $this->setTitle($post->name);
-        $this->render('post.post', compact('post', 'categories', 'category', 'form', 'comments'));
+        else
+        {
+            header('Location: ?p=error.notfound');
+            die();
+        }
     }
 }

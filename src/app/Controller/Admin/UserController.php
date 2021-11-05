@@ -38,7 +38,7 @@ class UserController extends AppController
                 die();
             }
         }
-        $user = $this->user->find($_GET['id']);
+        $user = $this->user->findUserId($_GET['id']);
         $roles = $this->role->extract('id', 'name');
         $form = new Form($user);
         $this->render('admin.user.edit', compact('user', 'form', 'roles'));

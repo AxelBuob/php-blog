@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-use App\Factory;
 
 class AppController extends \Core\Controller\Controller
 {
@@ -12,9 +11,7 @@ class AppController extends \Core\Controller\Controller
     public function __construct()
     {
         parent::__construct();
-        $this->viewPath = ROOT . '/src/app/view/'; 
+        $this->viewPath = ROOT . '/src/app/View/'; 
         $this->template = 'default'; 
     }
-
-
 }

@@ -3,7 +3,7 @@ namespace App\Controller;
 
 class ErrorController extends AppController
 {
-    public function notFound()
+    public function notfound()
     {
         header("HTTP/1.0 404 Not Found");
         $this->render('error.404');
