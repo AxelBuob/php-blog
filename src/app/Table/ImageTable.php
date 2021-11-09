@@ -2,13 +2,13 @@
 
 namespace App\Table;
 
-class FormationTable extends \Core\Table\Table
+class ImageTable extends \Core\Table\Table
 {
     public function find($id)
     {
         return $this->query(
             "SELECT * 
-            FROM formation
+            FROM image
             WHERE id = ?",
             [$id],
             null,
@@ -16,11 +16,23 @@ class FormationTable extends \Core\Table\Table
         );
     }
 
+    public function findPostId($id)
+    {
+        return $this->query(
+            "SELECT * 
+            FROM image
+            WHERE image_post = ?",
+            [$id],
+            null,
+            true
+        ); 
+    }
+
     public function all()
     {
         return $this->query(
-            "SELECT id, name, school, postcode, city, DATE_FORMAT(start_date, '%M %Y') as start_date, DATE_FORMAT(end_date, '%M %Y') as end_date
-            FROM formation",
+            "SELECT * 
+            FROM image",
             null,
             null,
             false

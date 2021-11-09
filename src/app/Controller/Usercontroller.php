@@ -146,7 +146,7 @@ class UserController extends AppController
 
     public function show()
     {
-        $user = $this->user->findUserId($_GET['id']);
+        $user = $this->user->find($_GET['id']);
         if(isset($_GET['id']) && $user)
         {
             $this->render('user.show', compact('user'));
