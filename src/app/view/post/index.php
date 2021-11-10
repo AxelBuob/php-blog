@@ -29,4 +29,14 @@
             <?php endif;  ?>
         <?php endforeach; ?>
     </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination d-flex justify-content-center mt-3">
+            <?php if ($current_page > 1) : ?>
+                <li class="page-item"><a class="page-link link-dark" href="?n=<?= $current_page - 1 ?>"><< Précédent</a></li>
+            <?php endif; ?>
+            <?php if ($current_page < $pages) : ?>
+                <li class="page-item"><a class="page-link link-dark" href="?n=<?= $current_page + 1 ?>">Suivant >></a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
 </section>

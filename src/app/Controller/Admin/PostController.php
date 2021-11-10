@@ -41,6 +41,7 @@ class PostController extends AppController
         $categories = $this->category->extract('id', 'name');
         $status = $this->status->extract('id', 'name');
         $form = new Form($_POST);
+        
         $this->render('admin.post.edit', compact('form', 'categories', 'status'));
     }
 
