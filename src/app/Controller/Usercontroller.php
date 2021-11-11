@@ -22,8 +22,8 @@ class UserController extends AppController
 
         if($this->auth->logged())
         {
-            header('Location: ?p=post.index');
-            die();
+            header('Location: /portofolio/');
+            exit();
         }
 
         if(!empty($_POST))
@@ -34,23 +34,23 @@ class UserController extends AppController
                 if($user->confirmed_at === null)
                 {
                     $_SESSION['flash']['danger'] = 'Merci de confirmer devez confirmer votre email';
-                    header('Location: ?p=user.signin');
-                    die();
+                    header('Location: /portofolio/user/signin');
+                    exit();
                 }
                 else
                 {
                         $_SESSION['user_id'] = $user->id;
                         $_SESSION['user_role'] = $user->user_role;
                         $_SESSION['flash']['success'] = 'Vous avez bien été connecté !';
-                        header('Location: index.php?p=post.index');
-                        die();
+                        header('Location: /portofolio/');
+                        exit();
                 }
             }
             else
             {
                 $_SESSION['flash']['danger'] = 'Mauvais mot de passe ou email !';
-                header('Location: index.php?p=user.signin');
-                die();
+                header('Location: /portofolio/user/signin');
+                exit();
             }
         }
         $form = new Form;
@@ -62,8 +62,8 @@ class UserController extends AppController
     {
 
         if ($this->auth->logged()) {
-            header('Location: ?p=post.index');
-            die();
+            header('Location: /portofolio/');
+            exit();
         }
 
         if(!empty($_POST))
@@ -101,7 +101,7 @@ class UserController extends AppController
                     $mail = new Mail($_POST['email'], $from, $subject, $message);
                     $mail->send();
                     $_SESSION['flash']['success'] = 'Un lien de confirmation vous a été envoyé par email';
-                    header('Location: ?p=post.index');
+                    header('Location: /portofolio');
                     die();
                     
                 }
@@ -125,12 +125,12 @@ class UserController extends AppController
             ]);
             if ($req) {
                 $_SESSION['flash']['success'] = 'Merci votre compte a bien été validé';
-                header('Location: ?p=user.signin');
-                die();
+                header('Location: /portofolio/');
+                exit();
             }
         } else {
-            header('Location: ?p=error.forbidden');
-            die();
+            header('Location: /portofolioerror/forbidden');
+            exit();
         }
     }
 
@@ -140,8 +140,8 @@ class UserController extends AppController
         session_destroy();
         session_start();
         $_SESSION['flash']['success'] = 'Vous avez bien été déconnecté !';
-        header('Location: index.php?p=post.index');
-        die();
+        header('Location: /portofolio');
+        exit();
     }
 
     public function show()
@@ -153,8 +153,8 @@ class UserController extends AppController
         }
         else
         {
-            header('Location: ?p=error.notfound');
-            die();
+            header('Location: /portofolio/error/notfound');
+            exit();
         }
     }
 
@@ -162,8 +162,8 @@ class UserController extends AppController
     {
 
         if(!$this->auth->logged() || $_SESSION['user_id'] !== $_GET['id']){
-            header('Location: ?p=error.forbidden');
-            die();  
+            header('Location: /portofolio/error/forbidden');
+            exit();  
         }
         else
         {
@@ -216,8 +216,8 @@ class UserController extends AppController
                     ]);
                     if($result)
                     {
-                        header('Location: ?p=user.setting&id='.$_SESSION['user_id']);
-                        die();
+                        header('Location: /portofolio/user/setting/?id='.$_SESSION['user_id']);
+                        exit();
                     }
                 }
             }
@@ -231,8 +231,8 @@ class UserController extends AppController
     public function password()
     {
         if (!$this->auth->logged()) {
-            header('Location: ?p=error.forbidden');
-            die();
+            header('Location: /portofolio/error/forbidden');
+            exit();
         }
         if(!empty($_POST))
         {
@@ -243,8 +243,8 @@ class UserController extends AppController
                 ]);
                 if($result) {
                     $_SESSION['flash']['success'] = 'Votre mot de passe a bien été changé';
-                    header('Location: ?p=user.settinghow&id='.$_SESSION['user_id']);
-                    die();
+                    header('Location: /portofolio/user/setting/?id='.$_SESSION['user_id']);
+                    exit();
                 }
             }
             else
@@ -260,8 +260,8 @@ class UserController extends AppController
     public function forget()
     {
         if ($this->auth->logged()) {
-            header('Location: ?p=user.signin');
-            die();
+            header('Location: /portofolio/user/signin');
+            exit();
         }
         if(!empty($_POST))
         {  
@@ -293,7 +293,8 @@ class UserController extends AppController
                         $mail = new Mail($user->email, $from, $subject, $message);
                         $mail->send();
                         $_SESSION['flash']['success'] = 'Un lien de réinitialisation de mot de passe vous a été envoyé par email';
-                        header('Location: ?p=post.index');
+                        header('Location: /portofolio');
+                        exit();
                     }
                 } 
             }
@@ -307,7 +308,7 @@ class UserController extends AppController
         $user = $this->user->findUserId($_GET['id']);
         if(!$user)
         {
-            header('Location: ?p=error.notfound');
+            header('Location: /portofolio/error/notfound');
             die();
         }
         else
@@ -316,7 +317,7 @@ class UserController extends AppController
                 if (!empty($_POST['password']) && !empty($_POST['password_confirm']) && $_POST['password'] === $_POST['password_confirm']) {
                     if(!$_GET['token'] === $user->reset_token)
                     {
-                        header('Location: ?p=error.forbidden');
+                        header('Location: /portofolio/error/forbidden');
                         die();
                     }
                     else
@@ -328,7 +329,7 @@ class UserController extends AppController
                         ]);
                         if ($result) {
                             $_SESSION['flash']['success'] = 'Votre mot de passe a bien été réinitialisé';
-                            header('Location: ?p=user.signin');
+                            header('Location: /portofolio/user/signin');
                             die();
                         }
                     }

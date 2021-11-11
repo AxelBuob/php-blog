@@ -12,8 +12,9 @@ class AppController extends \Core\Controller\Controller
     public function __construct()
     {
         parent::__construct();
+        $this->loadModel('user');
+
         $this->viewPath = ROOT . '/src/app/View/'; 
         $this->template = 'default';
-        $this->upload_path = './uploads/';
     }
 }

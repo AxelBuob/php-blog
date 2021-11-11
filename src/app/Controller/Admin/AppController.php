@@ -11,7 +11,7 @@ class AppController extends \App\Controller\AppController
         parent::__construct();
         if(!$this->auth->isAdmin())
         {
-            header('Location: ?p=error.forbidden');
+            header('Location: /portofolio/error/forbidden/');
         }
     }
 

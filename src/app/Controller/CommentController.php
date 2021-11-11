@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use Core\Html\Form;
-
 class CommentController extends AppController
 {
     public function __construct()
@@ -26,11 +24,11 @@ class CommentController extends AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = 'Merci votre commentaire a été soumis à validation';
-                header('Location: ?p=post.show&id=' . $_POST['comment_post']);
+                header('Location: /portofolio/post/show/?id=' . $_POST['comment_post']);
                 die();
             } else {
                 $_SESSION['flash']['danger'] = 'Oups! Une erreur est survenus';
-                header('Location: ?p=post.show&id=' . $_POST['comment_post']);
+                header('Location: /portofolio/post/show/?id=' . $_POST['comment_post']);
                 die();
             }
         }
@@ -43,13 +41,13 @@ class CommentController extends AppController
             $result = $this->comment->delete($_POST['comment_id']);
             if ($result) {
                 $_SESSION['flash'] = 'Votre commentaire a bien été supprimé.';
-                header('Location: ?p=post.show&id='. $_POST['post_id']);
+                header('Location: /portofolio/post/show/?id='. $_POST['post_id']);
                 die();
             } 
             else
             {
                 $_SESSION['flash'] = 'Oups! Une erreur est survenus.';
-                header('Location: ?p=post.show&id=' . $_POST['post_id']);
+                header('Location: /post/show/?id=' . $_POST['post_id']);
                 die();
             }
         }

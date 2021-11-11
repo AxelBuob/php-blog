@@ -34,7 +34,8 @@ class FormationController extends \App\Controller\Admin\AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = "La formation a bien été ajouté";
-                header('Location: ?p=admin.formation.index');
+                header('Location: /portofolio/admin/formation/');
+                exit();
             }
         }
         $form = new Form;
@@ -56,7 +57,8 @@ class FormationController extends \App\Controller\Admin\AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = "La formation a bien été modifié";
-                header('Location: ?p=admin.formation.index');
+                header('Location: /portofolio/admin/formation/');
+                exit();
             }
         }
         $formation = $this->formation->find($_GET['id']);
@@ -70,8 +72,8 @@ class FormationController extends \App\Controller\Admin\AppController
             $result = $this->formation->delete($_POST['id']);
             if ($result) {
                 $_SESSION['flash']['success'] = "La formation a bien été supprimé";
-                header('Location: ?p=admin.formation.index');
-                die();
+                header('Location: /portofolio/admin/formation/');
+                exit();
             }
         }
     }

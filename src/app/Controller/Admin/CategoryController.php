@@ -25,7 +25,8 @@ class CategoryController extends AppController
             $result = $this->category->create(['name' => $_POST['name']]);
             if ($result) {
                 $_SESSION['flash']['success'] = 'La catégorie a bien été ajouté';
-                header('Location: ?p=admin.category.index');
+                header('Location: /portofolio/admin/category/');
+                exit();
             }
         }
         $form = new Form($_POST);
@@ -38,7 +39,8 @@ class CategoryController extends AppController
             $result = $this->category->update($_GET['id'], ['name' => $_POST['name']]);
             if ($result) {
                 $_SESSION['flash']['success'] = 'La catégorie a bien été modifié';
-                header('Location: ?p=admin.category.index');
+                header('Location: /portofolio/admin/category/');
+                exit();
             }
         }
 
@@ -53,7 +55,8 @@ class CategoryController extends AppController
             $result = $this->category->delete($_POST['id']);
             if ($result) {
                 $_SESSION['flash']['success'] = 'La catégorie a bien été supprimé';
-                header('Location: ?p=admin.category.index');
+                header('Location: /portofolio/admin/category/');
+                exit();
             }
         }
     }

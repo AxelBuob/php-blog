@@ -14,7 +14,6 @@ class PostController extends AppController
         $this->loadModel('category');
         $this->loadModel('status');
         $this->loadModel('image');
-        $this->upload_path = './uploads/post/';
     }
 
     public function index()
@@ -35,7 +34,8 @@ class PostController extends AppController
                 'post_user' => $_SESSION['user_id'] 
             ]);
             if ($result) {
-                header('Location: ?p=admin.post.index');
+                header('Location: /portofolio/admin/post/');
+                exit();
             }
         }   
         $categories = $this->category->extract('id', 'name');
@@ -57,7 +57,7 @@ class PostController extends AppController
             if (is_array($_FILES['image']) && $_FILES['image']['tmp_name'])
             {    
                 $image = new ImageController();
-                $image->add($_FILES['image'], $this->upload_path, $post->id);
+                $image->add($_FILES['image'], $post->id);
             }
             $update_post = $this->post->update($_GET['id'],[
                 'name' => $_POST['name'], 
@@ -67,8 +67,8 @@ class PostController extends AppController
             ]);
             if ($update_post) {
                 $_SESSION['flash']['success'] = 'Article mis à jour avec succès';
-                header('Location: ?p=admin.post.edit&id='.$post->id);
-                die();
+                header('Location: /portofolio/admin/post/edit/?id='.$post->id);
+                exit();
             }
         }
         $this->render('admin.post.edit', compact('post', 'categories', 'status', 'form', 'post_image'));
@@ -79,8 +79,9 @@ class PostController extends AppController
         if (!empty($_POST)) {
             $result = $this->post->delete($_POST['id']);
             if ($result) {
-                header('Location: ?p=admin.post.index');
                 $_SESSION['flash']['success'] = "L'article a bien été supprimé";
+                header('Location: /portofolio/admin/post/');
+                exit();
             }
         }
     }

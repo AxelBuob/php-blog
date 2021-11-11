@@ -27,7 +27,8 @@ class SkillController extends \App\Controller\Admin\AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = 'La compétence a bien été ajouté';
-                header('Location: ?p=admin.skill.index');
+                header('Location: /portofolio/admin/skill/');
+                exit();
             }
         }
         $form = new Form();
@@ -43,7 +44,8 @@ class SkillController extends \App\Controller\Admin\AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = 'La compétence a bien été modifié';
-                header('Location: ?p=admin.skill.index');
+                header('Location: /portofolio/admin/skill/');
+                exit();
             }
         }
         $skill = $this->skill->find($_GET['id']);
@@ -57,8 +59,8 @@ class SkillController extends \App\Controller\Admin\AppController
             $result = $this->skill->delete($_POST['id']);
             if ($result) {
                 $_SESSION['flash']['success'] = 'La compétence a bien été supprimé';
-                header('Location: ?p=admin.skill.index');
-                die();
+                header('Location: /portofolio/admin/skill/');
+                exit();
             }
         }
     }

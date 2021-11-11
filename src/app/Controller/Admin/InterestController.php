@@ -24,7 +24,8 @@ class InterestController extends AppController
             $result = $this->interest->create(['name' => $_POST['name']]);
             if ($result) {
                 $_SESSION['flash']['success'] = "L'intérêts a bien été ajouté";
-                header('Location: ?p=admin.interest.index');
+                header('Location: /portofolio/admin/interest/');
+                exit();
             }
         }
         $form = new Form($_POST);
@@ -37,7 +38,8 @@ class InterestController extends AppController
             $result = $this->interest->update($_GET['id'], ['name' => $_POST['name']]);
             if ($result) {
                 $_SESSION['flash']['success'] = "L'intérêt a bien été modifié";
-                header('Location: ?p=admin.interest.index');
+                header('Location: /portofolio/admin/interest/');
+                exit();
             }
         }
 
@@ -52,7 +54,8 @@ class InterestController extends AppController
             $result = $this->interest->delete($_POST['id']);
             if ($result) {
                 $_SESSION['flash']['success'] = "L'intérêt a bien été supprimé";
-                header('Location: ?p=admin.interest.index');
+                header('Location: /portofolio/admin/interest/');
+                exit();
             }
         }
     }

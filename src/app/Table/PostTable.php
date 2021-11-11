@@ -39,8 +39,9 @@ class PostTable extends \Core\Table\Table
         return $this->query(
             "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
             post.post_status, post. post_category, post.post_user,
-            category.name AS category_name , 
+            category.name AS category_name, 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name,
+            image.path AS image,
             status.name AS status_name 
             FROM post
             LEFT JOIN category
@@ -49,6 +50,8 @@ class PostTable extends \Core\Table\Table
                 ON post.post_user = user.id
             LEFT JOIN status
                 ON post.post_status = status.id 
+            LEFT JOIN image
+                ON post.id = image.image_post
             ORDER BY post.creation_date DESC
             LIMIT $limit
             OFFSET $offset",

@@ -5,7 +5,9 @@
             <?php if ($post->status_name === 'publish') : ?>
                 <div class="col">
                     <div class="card border-0 shadow-sm">
-                        <img src="https://picsum.photos/500/300?random=<?= $post->id; ?>" alt="Demo" class="img-fluid" width="500" height="300">
+                        <?php if($post->image) : ?>
+                            <img src="<?= $post->image; ?>" alt="Demo" class="img-fluid" width="500" height="300">
+                        <?php endif; ?>
                         <div class="card-body">
                             <h3 class="card-title text-uppercase"><?= $post->name; ?></h5>
                                 <div class="card-subtitle">
@@ -32,10 +34,10 @@
     <nav aria-label="Page navigation">
         <ul class="pagination d-flex justify-content-center mt-3">
             <?php if ($current_page > 1) : ?>
-                <li class="page-item"><a class="page-link link-dark" href="?n=<?= $current_page - 1 ?>"><< Précédent</a></li>
+                <li class="page-item"><a class="page-link link-dark" href="?p=<?= $current_page - 1 ?>"><< Précédent</a></li>
             <?php endif; ?>
             <?php if ($current_page < $pages) : ?>
-                <li class="page-item"><a class="page-link link-dark" href="?n=<?= $current_page + 1 ?>">Suivant >></a></li>
+                <li class="page-item"><a class="page-link link-dark" href="?p=<?= $current_page + 1 ?>">Suivant >></a></li>
             <?php endif; ?>
         </ul>
     </nav>

@@ -44,8 +44,8 @@ class PageController extends AppController
                 $mail = new Mail($to, $from, $subject, $message);
                 $mail->send();
                 $_SESSION['flash']['success'] = 'Merci votre email a bien été envoyé';
-                header('Location: ?p=post.index');
-                die();
+                header('Location: /portofolio/');
+                exit();
             }
         }
         $form = new Form();

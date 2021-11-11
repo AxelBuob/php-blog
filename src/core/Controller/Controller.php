@@ -5,7 +5,6 @@ namespace Core\Controller;
 use Core\Auth\Auth;
 use Core\Database\MysqlDatabase;
 use Core\Config;
-use PDO;
 
 class Controller
 {
@@ -14,19 +13,23 @@ class Controller
     protected $auth;
     protected $title = 'localhost';
     protected $db;
+    protected $config;
 
     public function __construct()
     {
-        $this->auth = new Auth($this->getDB());
+        $this->auth = new Auth;
+        $this->loadModel('site');
+        $this->loadModel('user');
     }
 
-    protected function render($view,$variables = [], $title = null)
+    protected function render($view, $variables = [], $title = null)
     {
         ob_start();
         extract($variables);
         $title = ($title) ? $title  : $this->title;
         $auth = $this->auth->logged();
         $admin = $this->auth->isAdmin();
+        $config = $this->getConfig();
         require($this->viewPath . str_replace('.','/', $view) . '.php');
         $content = ob_get_clean();
         require($this->viewPath . "template/" .$this->template . '.php');
@@ -39,6 +42,12 @@ class Controller
             $this->db = new MysqlDatabase($config->get('db_name'), $config->get('db_host'), $config->get('db_user'), $config->get('db_pass'));
         }
         return $this->db;
+    }
+
+    protected function getConfig()
+    {
+        return $this->site->find('1');
+        
     }
 
     protected function setTitle($title)

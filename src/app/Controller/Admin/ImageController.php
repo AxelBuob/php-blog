@@ -8,6 +8,8 @@ class ImageController extends AppController
 {
     private $tmp_name;
     private $name;
+
+    protected $upload_dir;
     protected $upload_path;
 
     private $size;
@@ -55,7 +57,7 @@ class ImageController extends AppController
         }
     }
     
-    public function add($image, $path, $post_id)
+    public function add($image, $post_id)
     {
         $finfo = new \finfo();
 
@@ -63,21 +65,21 @@ class ImageController extends AppController
         $this->name = $image['name'];
         $this->size = $image['size'];
         $this->mime_type = $finfo->file($this->tmp_name, FILEINFO_MIME_TYPE);
-        $this->upload_path = $path;
-
-
+        
         $filename   = uniqid() . "-" . time();
         $extension  = pathinfo($this->name, PATHINFO_EXTENSION);
         $basename   = $filename . "." . $extension;
         $source       = $this->tmp_name;
-        $destination  = $this->upload_path . $basename;
-
+        
+        $destination  = UPLOAD_DIR . $basename;
+        $image_path = UPLOAD_PATH . $basename;
 
         if($this->validateImage() && $this->moveImage($source, $destination))
         { 
            $this->image->create([
                 'name' => $basename,
-                'path' => $destination,
+                'path' =>  $image_path,
+                'dir' => $destination,
                 'image_post' => $post_id
             ]);
             $_SESSION['flash']['success'] = 'Image ajouté avec succès';
@@ -93,15 +95,17 @@ class ImageController extends AppController
         if(isset($_GET['id']))
         {
             $image = $this->image->find($_GET['id']);
-            if(file_exists($image->path) && unlink($image->path) && $this->image->delete($image->id))
+            if(file_exists($image->dir) && unlink($image->dir) && $this->image->delete($image->id))
             {
                 $_SESSION['flash']['success'] = 'Image supprimé avec succès !';
-                header('Location: ?p=admin.post.edit&id='. $image->image_post);
-                die();
+                header('Location: /portofolio/admin/post/edit/?id='. $image->image_post);
+                exit();
             }
             else
             {
-                $_SESSION['flash']['warning'] = 'Oups une erreur est survenus !';   
+                $_SESSION['flash']['warning'] = 'Oups une erreur est survenus !';
+                header('Location: /portofolio/admin/post/edit/?id=' . $image->image_post);
+                exit();
             }
         }
 

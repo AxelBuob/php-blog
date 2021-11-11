@@ -34,7 +34,8 @@ class ExperienceController extends \App\Controller\Admin\AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = "L'expérience a bien été ajouté";
-                header('Location: ?p=admin.experience.index');
+                header('Location: /portofolio/admin/experience');
+                exit();
             }
         }
         $form = new Form;
@@ -47,7 +48,7 @@ class ExperienceController extends \App\Controller\Admin\AppController
             $start_date = ($_POST['start_date'] === '') ? null : $_POST['start_date'];
             $end_date = ($_POST['end_date'] === '') ? null : $_POST['end_date'];
             $result = $this->experience->update($_GET['id'], [
-                'title' => $_POST['title'],
+                'name' => $_POST['name'],
                 'company' => $_POST['company'],
                 'city' => $_POST['city'],
                 'postcode' => $_POST['postcode'],
@@ -56,7 +57,7 @@ class ExperienceController extends \App\Controller\Admin\AppController
             ]);
             if ($result) {
                 $_SESSION['flash']['success'] = "L'expérience a bien été modifié";
-                header('Location: ?p=admin.experience.index');
+                header('Location: /portofolio/admin/experience');
             }
         }
         $experience = $this->experience->find($_GET['id']);
@@ -70,7 +71,7 @@ class ExperienceController extends \App\Controller\Admin\AppController
             $result = $this->experience->delete($_POST['id']);
             if ($result) {
                 $_SESSION['flash']['success'] = "L'expérience a bien été supprimé";
-                header('Location: ?p=admin.experience.index');
+                header('Location: /portofolio/admin/experience');
                 die();
             }
         }

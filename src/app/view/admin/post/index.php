@@ -1,6 +1,6 @@
 <div class="container-fluid my-5">
     <div class="d-flex justify-content-end my-3">
-        <a class="btn btn-warning link-dark text-uppercase fw-light" href="?p=admin.post.add">Ajouter un article</a>
+        <a class="btn btn-warning link-dark text-uppercase fw-light" href="/portofolio/admin/post/add/">Ajouter un article</a>
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -23,8 +23,8 @@
                         <td><?= $post->status_name; ?></td>
                         <td><?= $post->user_name; ?></td>
                         <td>
-                            <a class="btn btn-outline-warning" href="?p=admin.post.edit&id=<?= $post->id; ?>">Éditer</a>
-                            <form class="d-inline" action="?p=admin.post.delete" method="post">
+                            <a class="btn btn-outline-warning" href="/portofolio/admin/post/edit/?id=<?= $post->id; ?>">Éditer</a>
+                            <form class="d-inline" action="/portofolio/admin/post/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $post->id; ?>">
                                 <button type="submit" class="btn btn-outline-danger">Supprimer</button>
                             </form>

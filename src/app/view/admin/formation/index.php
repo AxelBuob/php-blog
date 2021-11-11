@@ -1,6 +1,6 @@
 <div class="container my-5">
     <div class="d-flex justify-content-end my-3">
-        <a href="?p=admin.formation.add" class="btn btn-warning text-uppercase fw-light">Ajouter une formation</a>
+        <a href="/portofolio/admin/formation/add" class="btn btn-warning text-uppercase fw-light">Ajouter une formation</a>
     </div>
     <div class="table-reponsive">
         <table class="table">
@@ -21,8 +21,8 @@
                         <td><?= $formation->start_date; ?></td>
                         <td><?= $formation->end_date; ?></td>
                         <td>
-                            <a href="?p=admin.formation.edit&id=<?= $formation->id; ?>" class="btn btn-outline-warning">Éditer</a>
-                            <form class="d-inline" action="?p=admin.formation.delete" method="post">
+                            <a href="/portofolio/admin/formation/edit/?id=<?= $formation->id; ?>" class="btn btn-outline-warning">Éditer</a>
+                            <form class="d-inline" action="/portofolio/admin/formation/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $formation->id; ?>">
                                 <button class="btn btn-outline-danger">Supprimer</button>
                             </form>

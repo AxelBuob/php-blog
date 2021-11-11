@@ -5,7 +5,7 @@
                 <?php if($post_image): ?>
                     <img src="<?= $post_image->path; ?>" alt="Image à la une" width="150px" height="auto">
                     <div class="container">
-                        <a href="?p=admin.image.delete&id=<?=$post_image->id; ?>" class="btn btn-outline-danger btn-sm mt-3">Supprimer</a>
+                        <a href="/portofolio/admin/image/delete/?id=<?=$post_image->id; ?>" class="btn btn-outline-danger btn-sm mt-3">Supprimer</a>
                     </div>
                 <?php else : ?>
                     <?= $form->input('image', 'Image à la une', '', ['type' => 'file']); ?>
