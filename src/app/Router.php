@@ -25,6 +25,7 @@ class Router
     {
         $request_uri = explode('/', $_SERVER['REQUEST_URI']);
         $request_uri = array_diff($request_uri, ['', null, 0, $this->root_directory]);
+
         if (!empty($request_uri)) {
             $i = 0;
             foreach ($request_uri as $k => $v) {
@@ -32,6 +33,10 @@ class Router
                 if (!preg_match($regex, $request_uri[$k])) {
                     $route[$i] = $request_uri[$k];
                     $i++;
+                }
+                else 
+                {
+                    $route = false;
                 }
             }
         } else {

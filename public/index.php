@@ -13,11 +13,13 @@ define('MB', 1048576);
 define('GB', 1073741824);
 define('TB', 1099511627776);
 
+require '../vendor/autoload.php';
 require ROOT . '/src/app/Factory.php';
 Factory::autoloading();
 
 $router = new Router(BASE_DIR);
 $router->init();
+
 
 
 

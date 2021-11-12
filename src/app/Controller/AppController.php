@@ -14,7 +14,7 @@ class AppController extends \Core\Controller\Controller
         parent::__construct();
         $this->loadModel('user');
 
-        $this->viewPath = ROOT . '/src/app/View/'; 
+        $this->viewPath = ROOT . '/src/app/view/'; 
         $this->template = 'default';
     }
 }

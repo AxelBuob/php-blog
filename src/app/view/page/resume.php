@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center mt-5">
-        <a href="#" class="btn btn-outline-dark text-uppercase">Télécharger</a>
+    <div id="resume-download" class="d-flex justify-content-center mt-5">
+        <a href="/portofolio/page/resume/?download" class="btn btn-outline-dark text-uppercase">Télécharger</a>
     </div>
 </div>
