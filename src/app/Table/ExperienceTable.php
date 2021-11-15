@@ -19,7 +19,7 @@ class ExperienceTable extends \Core\Table\Table
     public function all()
     {
         return $this->query(
-            "SELECT name, company, postcode, city, DATE_FORMAT(start_date, '%M %Y') as start_date, DATE_FORMAT(end_date, '%M %Y') as end_date
+            "SELECT id, name, company, postcode, city, DATE_FORMAT(start_date, '%M %Y') as start_date, DATE_FORMAT(end_date, '%M %Y') as end_date
             FROM experience",
             null,
             null,

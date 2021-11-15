@@ -1,6 +1,6 @@
 <div class="container my-5">
     <div class="d-flex justify-content-end my-3">
-        <a href="?p=admin.experience.add" class="btn btn-warning text-uppercase fw-light">Ajouter une expérience</a>
+        <a href="/portofolio/admin/experience/add" class="btn btn-warning text-uppercase fw-light">Ajouter une expérience</a>
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -21,8 +21,8 @@
                         <td><?= $experience->start_date; ?></td>
                         <td><?= $experience->end_date; ?></td>
                         <td>
-                            <a href="?p=admin.experience.edit&id=<?= $experience->id; ?>" class="btn btn-outline-warning">Éditer</a>
-                            <form class="d-inline" action="?p=admin.experience.delete" method="post">
+                            <a href="/portofolio/admin/experience/edit/?id=<?= $experience->id; ?>" class="btn btn-outline-warning">Éditer</a>
+                            <form class="d-inline" action="/portofolio/admin/experience/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $experience->id; ?>">
                                 <button class="btn btn-outline-danger">Supprimer</button>
                             </form>

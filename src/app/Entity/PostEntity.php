@@ -6,7 +6,7 @@ class PostEntity extends \Core\Entity\Entity
 {
     public function getUrl()
     {
-        return '?p=post.show&id='. $this->id;
+        return '/portofolio/post/show/?id='. $this->id;
     }
 
     public function getExcerpt()
@@ -21,16 +21,11 @@ class PostEntity extends \Core\Entity\Entity
 
     public function getCategory()
     {
-        return '?p=post.category&id=' . $this->post_category;
-    }
-
-    public function getGithub()
-    {
-        return 'http://github.com/axelbuob/';
+        return '/portofolio/post/category/?id=' . $this->post_category;
     }
 
     public function getUser()
     {
-        return '?p=user.show&id=' . $this->post_user;
+        return '/portofolio/user/show/?id=' . $this->post_user;
     }
 }

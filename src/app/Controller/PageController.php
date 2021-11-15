@@ -2,7 +2,7 @@
 namespace App\Controller;
 use Core\Html\Form;
 use Core\Mail\Mail;
-
+use \Mpdf\Mpdf;
 class PageController extends AppController
 {
     public function __construct()
@@ -13,6 +13,7 @@ class PageController extends AppController
         $this->loadModel('experience');
         $this->loadModel('interest');
         $this->loadModel('user');
+        $this->loadModel('site');
     }
 
     public function contact()
@@ -44,8 +45,8 @@ class PageController extends AppController
                 $mail = new Mail($to, $from, $subject, $message);
                 $mail->send();
                 $_SESSION['flash']['success'] = 'Merci votre email a bien été envoyé';
-                header('Location: ?p=post.index');
-                die();
+                header('Location: /portofolio/');
+                exit();
             }
         }
         $form = new Form();
@@ -59,6 +60,19 @@ class PageController extends AppController
         $formations = $this->formation->all();
         $interests = $this->interest->all();
         $author = $this->user->find('1');
-        $this->render('page.resume',compact('skills','experiences','formations','interests','author'));
+        
+        if (isset($_GET['download'])) {
+            $mpdf = new Mpdf();
+            ob_start();            
+            require($this->viewPath . '/page/resume-print.php');
+            $content = ob_get_clean();
+            $mpdf->WriteHTML($content);
+            $mpdf->Output();
+        }
+        else
+        {
+            $this->render('page.resume',compact('skills','experiences','formations','interests','author'));  
+        }
+
     }
 }

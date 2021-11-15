@@ -38,7 +38,7 @@
     <div class="container mt-5">
         <h5 class="text-uppercase">Laisser un commentaire</h5>
         <?php if ($auth) : ?>
-            <form action="?p=comment.add" method="post">
+            <form action="/portofolio/comment/add" method="post">
                 <?= $form->input('comment_post', '', '', ['type' => 'hidden', 'value' => $post->id]); ?>
                 <?= $form->input('content', '', '', ['type' => 'textarea']); ?>
                 <button type="submit" class="mt-3 btn btn-sm btn-warning text-uppercase text-light text-dark">Laisser un commentaire</button>
@@ -46,7 +46,7 @@
         <?php else : ?>
             <div role="alert" class="alert alert-info">
                 <p>Vous devez être connecté pour pouvoir laisser un commentaire.</p>
-                <a class="link-dark" href="?p=user.signin">Se connecter</a> / <a class="link-dark" href="?p=user.signup">S'inscrire</a>
+                <a class="link-dark" href="/portofolio/user/signin">Se connecter</a> / <a class="link-dark" href="/portofolio/user/signup">S'inscrire</a>
             </div>
         <?php endif; ?>
     </div>

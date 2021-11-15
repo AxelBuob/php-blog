@@ -18,8 +18,8 @@
                         <td><?= $comment->user_email; ?></td>
                         <td><?= $comment->status_name; ?></td>
                         <td>
-                            <a class="btn btn-outline-warning" href="?p=admin.comment.show&id=<?= $comment->id; ?>">Lire</a>
-                            <form class="d-inline" action="?p=admin.comment.delete" method="post">
+                            <a class="btn btn-outline-warning" href="/portofolio/admin/comment/show/?id=<?= $comment->id; ?>">Lire</a>
+                            <form class="d-inline" action="/portofolio/admin/comment/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $comment->id; ?>">
                                 <button class="btn btn-outline-danger">Supprimer</button>
                             </form>

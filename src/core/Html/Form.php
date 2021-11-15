@@ -87,6 +87,10 @@ class Form
         {
             $input = "<input class='form-control' type='{$type}' name='{$name}' value='{$options['value']}'>";
         }
+        elseif($type === 'file')
+        {
+            $input = "<input class='form-control'  type='{$type}' name='{$name}'>";  
+        }
         else {
             $input = "<input class='form-control' type='{$type}' name='{$name}' placeholder='{$placeholder}' value='{$this->getValue($name)}'>";
         }
@@ -120,4 +124,5 @@ class Form
         $input .= "</select>";
         return $label . $input;
     }
+
 }

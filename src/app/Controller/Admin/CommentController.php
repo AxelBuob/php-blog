@@ -33,8 +33,8 @@ class CommentController extends AppController
             if($result)
             {
                 $_SESSION['flash']['success'] = 'Le status du commentaire a bien été modifié.';
-                header('Location: ?p=admin.comment.index');
-                die();
+                header('Location: /portofolio/admin/comment/');
+                exit();
             }
         }
         $status = $this->status->extract('id', 'name'); 
@@ -48,13 +48,13 @@ class CommentController extends AppController
         if (!empty($_POST)) {
             $result = $this->comment->delete($_POST['id']);
             if ($result) {
-                $_SESSION['flash'] = 'Le commentaire a bien été supprimé';
-                header('Location: ?p=admin.comment.index');
-                die();
+                $_SESSION['flash']['success'] = 'Le commentaire a bien été supprimé';
+                header('Location: /portofolio/admin/comment/');
+                exit();
             }
-            $_SESSION['flash'] = 'Oups! Une erreur est survenus';
-            header('Location: ?p=admin.comment.index');
-            die();
+            $_SESSION['flash']['danger'] = 'Oups! Une erreur est survenus';
+            header('Location: /portofolio/admin/comment/');
+            exit();
         }
     }
 }

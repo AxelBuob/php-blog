@@ -15,7 +15,10 @@ class Autoloader
             $class = str_replace(__NAMESPACE__ . '\\', '', $class);
             $class = str_replace('\\', '/', $class);
             $file = __DIR__ . '/' . $class . '.php';
-            require $file;
+            if(file_exists($file))
+            {
+                require $file;
+            }
         }
     }
 }

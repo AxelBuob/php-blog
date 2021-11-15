@@ -15,8 +15,26 @@ class PostController extends AppController
 
     public function index()
     {
-        $posts = $this->post->all();
-        $this->render('post.index', compact('posts'));
+        $post_number = $this->post->count();
+        $post_number = (int) $post_number->post;
+        $page_number = ($_GET['p']) ?? 1;
+        if(!filter_var($page_number, FILTER_VALIDATE_INT))
+        {
+            header('Location: /portofolio/error/notfound');
+            exit();
+        }
+        $current_page = (int) $page_number;
+        $post_per_page = 6;
+        $pages = ceil($post_number / $post_per_page);
+        $offset = $post_per_page * ($current_page - 1);
+
+        if($current_page > $pages)
+        {
+            header('Location: /portofolio/error/notfound');
+            exit();
+        }
+        $posts = $this->post->paginate($post_per_page, $offset);
+        $this->render('post.index', compact('posts', 'current_page', 'pages'));
     }
 
     public function category()
@@ -27,8 +45,8 @@ class PostController extends AppController
         }
         else
         {
-            header('Location: ?p=error.notfound');
-            die();
+            header('Location: /portofolio/error/notfound');
+            exit();
         }
     }
     public function show()
@@ -43,8 +61,8 @@ class PostController extends AppController
         }
         else
         {
-            header('Location: ?p=error.notfound');
-            die();
+            header('Location: /portofolio/error/notfound');
+            exit();
         }
     }
 }
