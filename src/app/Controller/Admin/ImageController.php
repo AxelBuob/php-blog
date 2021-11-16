@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use \App\Controller\Admin\AppController;
+use Intervention\Image\ImageManager;
 
 class ImageController extends AppController
 {
@@ -22,7 +23,9 @@ class ImageController extends AppController
     {
         parent::__construct();
         $this->loadModel('image');
+
     }
+
 
     private function validateImage()
     {
@@ -56,8 +59,17 @@ class ImageController extends AppController
             return false;
         }
     }
+
+    public function createFavicon($image)
+    {
+        $manager = new ImageManager(array('driver' => 'imagick'));
+        $manager->make($image)
+            ->resize(16,16)
+            ->encode('ico',100)
+            ->save(ROOT .'/favicon.ico');
+    }
     
-    public function add($image, $post_id)
+    public function add($image)
     {
         $finfo = new \finfo();
 
@@ -76,41 +88,37 @@ class ImageController extends AppController
 
         if($this->validateImage() && $this->moveImage($source, $destination))
         { 
-           $this->image->create([
+           $image_create = $this->image->create([
                 'name' => $basename,
                 'path' =>  $image_path,
-                'dir' => $destination,
-                'image_post' => $post_id
+                'dir' => $destination
             ]);
-            $_SESSION['flash']['success'] = 'Image ajouté avec succès';
+
+            if($image_create)
+            {
+                $image_last_insert_id = $this->image->getLastId();
+                $_SESSION['flash']['success'] = 'Image ajouté avec succès';
+            }
         }
         else
         {
             $_SESSION['flash']['danger'] = 'Oups une erreur est survenus';
         }
+        return $image_last_insert_id;
     }
 
-    public function delete()
+    public function delete($id)
     {
-        if(isset($_GET['id']))
+        $image = $this->image->find($id);
+        
+        if(file_exists($image->dir) && unlink($image->dir) && $this->image->delete($image->id))
         {
-            $image = $this->image->find($_GET['id']);
-            if(file_exists($image->dir) && unlink($image->dir) && $this->image->delete($image->id))
-            {
-                $_SESSION['flash']['success'] = 'Image supprimé avec succès !';
-                header('Location: /portofolio/admin/post/edit/?id='. $image->image_post);
-                exit();
-            }
-            else
-            {
-                $_SESSION['flash']['warning'] = 'Oups une erreur est survenus !';
-                header('Location: /portofolio/admin/post/edit/?id=' . $image->image_post);
-                exit();
-            }
+            $_SESSION['flash']['success'] = 'Image supprimé avec succès !';
         }
-
-
-
+        else
+        {
+            $_SESSION['flash']['warning'] = 'Oups une erreur est survenus !';
+        }
     }
 
 }

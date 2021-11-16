@@ -2,6 +2,7 @@
 
 use \App\Factory;
 use \App\Router;
+use Intervention\Image\ImageManager;
 
 define('ROOT', dirname(__DIR__));
 define('BASE_DIR', 'portofolio');
@@ -16,6 +17,8 @@ define('TB', 1099511627776);
 require '../vendor/autoload.php';
 require ROOT . '/src/app/Factory.php';
 Factory::autoloading();
+
+
 
 $router = new Router(BASE_DIR);
 $router->init();

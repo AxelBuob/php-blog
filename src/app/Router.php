@@ -34,10 +34,7 @@ class Router
                     $route[$i] = $request_uri[$k];
                     $i++;
                 }
-                else 
-                {
-                    $route = false;
-                }
+                
             }
         } else {
             $route = false;

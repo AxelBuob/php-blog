@@ -24,23 +24,35 @@ class PostController extends AppController
 
     public function add()
     {
+        $categories = $this->category->extract('id', 'name');
+        $status = $this->status->extract('id', 'name');
+        $form = new Form($_POST);
+
         if (!empty($_POST)) {
-            $result = $this->post->create([
+            if (is_array($_FILES['image']) && $_FILES['image']['tmp_name'])
+            {
+                $image = new ImageController();
+                if($image->add($_FILES['image']))
+                {
+                    $image = new ImageController();
+                    $image_last_insert_id = $image->add($_FILES['image']);
+                }
+            }
+            $create_post = $this->post->create([
                 'name' => $_POST['name'], 
                 'content' => $_POST['content'],
                 'creation_date' => date("Y-m-d H:i:s"),
                 'post_category' => $_POST['post_category'],
                 'post_status' => $_POST['post_status'],
-                'post_user' => $_SESSION['user_id'] 
+                'post_user' => $_SESSION['user_id'],
+                'post_image' => $image_last_insert_id
             ]);
-            if ($result) {
+            if ($create_post) {
                 header('Location: /portofolio/admin/post/');
                 exit();
             }
         }   
-        $categories = $this->category->extract('id', 'name');
-        $status = $this->status->extract('id', 'name');
-        $form = new Form($_POST);
+        
         
         $this->render('admin.post.edit', compact('form', 'categories', 'status'));
     }
@@ -51,19 +63,29 @@ class PostController extends AppController
         $categories = $this->category->extract('id', 'name');
         $status = $this->status->extract('id', 'name');
         $form = new Form($post);
-        $post_image = $this->image->findPostId($post->id);
         
         if (!empty($_POST)) {
             if (is_array($_FILES['image']) && $_FILES['image']['tmp_name'])
-            {    
+            {
                 $image = new ImageController();
-                $image->add($_FILES['image'], $post->id);
+                if($post->image_id !== null)
+                {
+                    $this->post->update($_GET['id'],['post_image' => null]);
+                    $image->delete($post->image_id);
+                    $image_last_insert_id = $image->add($_FILES['image']);
+                }
+                else
+                {
+                    $image_last_insert_id = $image->add($_FILES['image']);
+                }
             }
             $update_post = $this->post->update($_GET['id'],[
                 'name' => $_POST['name'], 
                 'content' => $_POST['content'], 
                 'post_category' => $_POST['post_category'],
-                'post_status' => $_POST['post_status']
+                'post_status' => $_POST['post_status'],
+                'post_image' => $image_last_insert_id
+                
             ]);
             if ($update_post) {
                 $_SESSION['flash']['success'] = 'Article mis à jour avec succès';
@@ -71,7 +93,7 @@ class PostController extends AppController
                 exit();
             }
         }
-        $this->render('admin.post.edit', compact('post', 'categories', 'status', 'form', 'post_image'));
+        $this->render('admin.post.edit', compact('post', 'categories', 'status', 'form'));
     }
 
     public function delete()

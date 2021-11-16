@@ -44,6 +44,11 @@ class Controller
         return $this->db;
     }
 
+    public function getLastId()
+    {
+        return $this->getDB()->lastInsertId();
+    }
+
     protected function getConfig()
     {
         return $this->site->find('1');
