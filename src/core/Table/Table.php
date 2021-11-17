@@ -12,14 +12,15 @@ class Table
     public function __construct(MysqlDatabase $db)
     {
         $this->db = $db;
-        if($this->table === null)
-        {
-            $class_name = explode('\\', get_called_class());
-            $class_name = end($class_name);
-            $class_name = str_replace('Table', '', $class_name);
-            $class_name = strtolower($class_name);
-            $this->table = $class_name;
-        }
+        // if($this->table === null)
+        // {
+        //     $class_name = explode('\\', get_called_class());
+        //     $class_name = end($class_name);
+        //     $class_name = str_replace('Table', '', $class_name);
+        //     $class_name = strtolower($class_name);
+        //     die(var_dump($class_name));
+        //     $this->table = $class_name;
+        // }
     }
 
     public function getDB()
@@ -47,13 +48,14 @@ class Table
 
     public function all()
     {
-        return $this->query("SELECT * FROM " .$this->table, null, str_replace('Table', 'Entity', get_called_class()), false);
+        return $this->query("SELECT * FROM " .$this->table, null, null, false);
     }
 
     public function find($id)
     {
-        return $this->query("SELECT * FROM " . $this->table . " WHERE id = ?", [$id], str_replace('Table', 'Entity', get_called_class()), true);
+        return $this->query("SELECT * FROM " . $this->table . " WHERE id = ?", [$id], null, true);
     }
+
 
     public function update($id, $fields)
     {

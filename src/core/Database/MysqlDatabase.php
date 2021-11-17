@@ -53,6 +53,7 @@ class MysqlDatabase
         return $query;
     }
 
+
     public function prepare($statement, $attributes, $class_name = null, $unique = false)
     {
         $query = $this->getPDO()->prepare($statement);

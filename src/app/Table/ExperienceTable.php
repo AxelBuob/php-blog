@@ -4,17 +4,19 @@ namespace App\Table;
 
 class ExperienceTable extends \Core\Table\Table
 {
-    public function find($id)
-    {
-        return $this->query(
-            "SELECT * 
-            FROM experience
-            WHERE id = ?",
-            [$id],
-            null,
-            true
-        );
-    }
+    protected $table = 'experience';
+
+    // public function find($id)
+    // {
+    //     return $this->query(
+    //         "SELECT * 
+    //         FROM experience
+    //         WHERE id = ?",
+    //         [$id],
+    //         null,
+    //         true
+    //     );
+    // }
 
     public function all()
     {

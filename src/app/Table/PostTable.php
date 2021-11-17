@@ -4,7 +4,7 @@ namespace App\Table;
 
 class PostTable extends \Core\Table\Table
 {
-
+    protected $table = 'post';
 
     public function count()
     {

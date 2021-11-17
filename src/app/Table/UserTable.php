@@ -4,17 +4,17 @@ namespace App\Table;
 
 class UserTable extends \Core\Table\Table
 {
-
+    protected $table = 'user';
 
     public function findUserEmail($email)
     {
         return $this->query('SELECT * FROM user WHERE email = ?', [$email], null, true);
     }
 
-    public function find($id)
-    {
-        return $this->query('SELECT * FROM user WHERE id = ?', [$id], null, true);
-    }
+    // public function find($id)
+    // {
+    //     return $this->query('SELECT * FROM user WHERE id = ?', [$id], null, true);
+    // }
 
     public function all()
     {

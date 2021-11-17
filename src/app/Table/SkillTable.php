@@ -4,26 +4,28 @@ namespace App\Table;
 
 class SkillTable extends \Core\Table\Table
 {
-    public function find($id)
-    {
-        return $this->query(
-            "SELECT * 
-            FROM skill
-            WHERE id = ?",
-            [$id],
-            null,
-            true
-        );
-    }
+    protected $table = 'skill';
 
-    public function all()
-    {
-        return $this->query(
-            "SELECT * 
-            FROM skill",
-            null,
-            null,
-            false
-        );
-    }
+    // public function find($id)
+    // {
+    //     return $this->query(
+    //         "SELECT * 
+    //         FROM skill
+    //         WHERE id = ?",
+    //         [$id],
+    //         null,
+    //         true
+    //     );
+    // }
+
+    // public function all()
+    // {
+    //     return $this->query(
+    //         "SELECT * 
+    //         FROM skill",
+    //         null,
+    //         null,
+    //         false
+    //     );
+    // }
 }

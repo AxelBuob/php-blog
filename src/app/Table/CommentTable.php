@@ -4,6 +4,7 @@ namespace App\Table;
 
 class CommentTable extends \Core\Table\Table
 {
+    protected $table = 'comment';
 
     public function all()
     {
