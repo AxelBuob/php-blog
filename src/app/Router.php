@@ -87,8 +87,6 @@ class Router
     public function setController()
     {
         $regex = '/^(&|\?)([a-z]+)=([0-9]+)$/';
-
-
         if (isset($this->route['0'])) {
             if ($this->route['0'] === 'admin') {
                 if (isset($this->route['1'])) {

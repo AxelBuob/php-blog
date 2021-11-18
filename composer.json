@@ -1,4 +1,5 @@
 {
+    "licence": "GPL-3.0-or-later",
     "require": {
         "mpdf/mpdf": "^8.0",
         "intervention/image": "^2.7"

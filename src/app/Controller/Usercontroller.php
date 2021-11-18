@@ -117,8 +117,8 @@ class UserController extends AppController
         $token = $_GET['token'];
         $user = $this->user->findUserId($id);
         if ($user && $user->confirmed_token === $token) {
-            //$_SESSION['user_id'] = $user->id;
-            //$_SESSION['user_role'] = $user->user_role;
+            $_SESSION['user_id'] = $user->id;
+            $_SESSION['user_role'] = $user->user_role;
             $req = $this->user->update($user->id, [
                 'confirmed_token' => null,
                 'confirmed_at' => date('Y-m-d H:i:s')

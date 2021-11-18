@@ -12,15 +12,6 @@ class Table
     public function __construct(MysqlDatabase $db)
     {
         $this->db = $db;
-        // if($this->table === null)
-        // {
-        //     $class_name = explode('\\', get_called_class());
-        //     $class_name = end($class_name);
-        //     $class_name = str_replace('Table', '', $class_name);
-        //     $class_name = strtolower($class_name);
-        //     die(var_dump($class_name));
-        //     $this->table = $class_name;
-        // }
     }
 
     public function getDB()
