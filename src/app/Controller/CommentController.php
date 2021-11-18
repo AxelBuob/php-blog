@@ -14,7 +14,6 @@ class CommentController extends AppController
     public function add()
     {
         if (!empty($_POST)) {
-            
             $result = $this->comment->create([
                 'content' => $_POST['content'],
                 'creation_date' => date("Y-m-d H:i:s"),
@@ -25,11 +24,11 @@ class CommentController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = 'Merci votre commentaire a été soumis à validation';
                 header('Location: /portofolio/post/show/?id=' . $_POST['comment_post']);
-                die();
+                throw new \Exception();
             } else {
                 $_SESSION['flash']['danger'] = 'Oups! Une erreur est survenus';
                 header('Location: /portofolio/post/show/?id=' . $_POST['comment_post']);
-                die();
+                throw new \Exception();
             }
         }
     }
@@ -42,13 +41,13 @@ class CommentController extends AppController
             if ($result) {
                 $_SESSION['flash'] = 'Votre commentaire a bien été supprimé.';
                 header('Location: /portofolio/post/show/?id='. $_POST['post_id']);
-                die();
+                throw new \Exception();
             } 
             else
             {
                 $_SESSION['flash'] = 'Oups! Une erreur est survenus.';
                 header('Location: /post/show/?id=' . $_POST['post_id']);
-                die();
+                throw new \Exception();
             }
         }
             

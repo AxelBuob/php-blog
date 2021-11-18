@@ -21,7 +21,7 @@ class PostController extends AppController
         if(!filter_var($page_number, FILTER_VALIDATE_INT))
         {
             header('Location: /portofolio/error/notfound');
-            exit();
+            throw new \Exception();;
         }
         $current_page = (int) $page_number;
         $post_per_page = 6;
@@ -31,7 +31,7 @@ class PostController extends AppController
         if($current_page > $pages)
         {
             header('Location: /portofolio/error/notfound');
-            exit();
+            throw new \Exception();;
         }
         $posts = $this->post->paginate($post_per_page, $offset);
         $this->render('post.index', compact('posts', 'current_page', 'pages'));
@@ -46,7 +46,7 @@ class PostController extends AppController
         else
         {
             header('Location: /portofolio/error/notfound');
-            exit();
+            throw new \Exception();;
         }
     }
     public function show()
@@ -62,7 +62,7 @@ class PostController extends AppController
         else
         {
             header('Location: /portofolio/error/notfound');
-            exit();
+            throw new \Exception();;
         }
     }
 }

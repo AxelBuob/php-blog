@@ -36,7 +36,7 @@ class UserController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'utilisatateur a bien été modifié.";
                 header('Location: /portofolio/admin/user/');
-                exit();
+                throw new \Exception();;
             }
         }
         $user = $this->user->find($_GET['id']);
@@ -59,7 +59,7 @@ class UserController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'utilisatateur a bien été ajouté.";
                 header('Location: /portofolio/admin/user/');
-                exit();
+                throw new \Exception();;
             }
         }
         $roles = $this->role->extract('id', 'name');
@@ -74,7 +74,7 @@ class UserController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'utilisatateur a bien été supprimé.";
                 header('Location: /portofolio/admin/user/');
-                exit();
+                throw new \Exception();;
             }
         }
     }

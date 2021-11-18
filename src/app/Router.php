@@ -58,7 +58,7 @@ class Router
             $controller->$method();
         } else {
             header('Location: /portofolio/error/notfound/');
-            exit();
+            throw new \Exception();;
         }
     }
 

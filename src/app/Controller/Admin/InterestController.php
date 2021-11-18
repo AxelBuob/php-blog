@@ -25,7 +25,7 @@ class InterestController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'intérêts a bien été ajouté";
                 header('Location: /portofolio/admin/interest/');
-                exit();
+                throw new \Exception();;
             }
         }
         $form = new Form($_POST);
@@ -39,7 +39,7 @@ class InterestController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'intérêt a bien été modifié";
                 header('Location: /portofolio/admin/interest/');
-                exit();
+                throw new \Exception();;
             }
         }
 
@@ -55,7 +55,7 @@ class InterestController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'intérêt a bien été supprimé";
                 header('Location: /portofolio/admin/interest/');
-                exit();
+                throw new \Exception();;
             }
         }
     }
