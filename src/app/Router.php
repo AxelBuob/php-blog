@@ -3,7 +3,6 @@
 namespace App;
 class Router
 {
-
     private $root_directory;
 
     public $route;
@@ -24,7 +23,10 @@ class Router
     private function explodeURI()
     {
         $request_uri = explode('/', $_SERVER['REQUEST_URI']);
+        
         $request_uri = array_diff($request_uri, ['', null, 0, $this->root_directory]);
+        
+        //$request_uri = explode('?', $_SERVER['REQUEST_URI']);
 
         if (!empty($request_uri)) {
             $i = 0;
@@ -33,6 +35,10 @@ class Router
                 if (!preg_match($regex, $request_uri[$k])) {
                     $route[$i] = $request_uri[$k];
                     $i++;
+                }
+                else 
+                {
+                    $route[$i] = $request_uri[$k]; 
                 }
                 
             }
@@ -80,6 +86,9 @@ class Router
 
     public function setController()
     {
+        $regex = '/^(&|\?)([a-z]+)=([0-9]+)$/';
+
+
         if (isset($this->route['0'])) {
             if ($this->route['0'] === 'admin') {
                 if (isset($this->route['1'])) {
@@ -87,7 +96,13 @@ class Router
                 } else {
                     $controller = 'post';
                 }
-            } else {
+            }
+            elseif(preg_match($regex, $this->route['0']))
+            {
+                $controller = 'post';
+            }
+            else 
+            {
                 $controller = $this->route['0'];
             }
         } else {
