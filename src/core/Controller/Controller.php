@@ -6,12 +6,13 @@ use Core\Auth\Auth;
 use Core\Database\MysqlDatabase;
 use Core\Config;
 
+
 class Controller
 {
     protected $viewPath;
     protected $template;
     protected $auth;
-    protected $title = 'localhost';
+    protected $title;
     protected $db;
     protected $config;
 
@@ -26,10 +27,10 @@ class Controller
     {
         ob_start();
         extract($variables);
-        $title = ($title) ? $title  : $this->title;
         $auth = $this->auth->logged();
         $admin = $this->auth->isAdmin();
         $config = $this->getConfig();
+        $title = ($title) ? $title  : $this->title;
         require($this->viewPath . str_replace('.','/', $view) . '.php');
         $content = ob_get_clean();
         require($this->viewPath . "template/" .$this->template . '.php');

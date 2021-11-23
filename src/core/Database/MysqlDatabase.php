@@ -3,7 +3,7 @@
 namespace Core\Database;
 
 use \PDO;
-
+use Core\Html\Html;
 class MysqlDatabase
 {
     private $pdo;
@@ -50,6 +50,7 @@ class MysqlDatabase
         } else {
             $query = $query->fetchAll();
         }
+
         return $query;
     }
 

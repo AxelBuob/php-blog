@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 use Core\Html\Form;
-
+use Core\Html\Html;
 class PostController extends AppController
 {
 
@@ -33,6 +33,7 @@ class PostController extends AppController
             header('Location: /portofolio/error/notfound');
             throw new \Exception();;
         }
+        
         $posts = $this->post->paginate($post_per_page, $offset);
         $this->render('post.index', compact('posts', 'current_page', 'pages'));
     }
@@ -40,7 +41,10 @@ class PostController extends AppController
     public function category()
     {
         $posts = $this->post->allinCategory($_GET['id']);
+        $category_name = $posts['0']->category_name;
+        var_dump($category_name);
         if($posts) {
+            $this->setTitle($category_name);
             $this->render('post.category', compact('posts'));
         }
         else
@@ -49,6 +53,7 @@ class PostController extends AppController
             throw new \Exception();;
         }
     }
+
     public function show()
     {
         $post = $this->post->find($_GET['id']);

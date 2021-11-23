@@ -5,6 +5,7 @@ namespace App\Table;
 class PostTable extends \Core\Table\Table
 {
     protected $table = 'post';
+    protected $entity = '\App\Entity\PostEntity';
 
     public function count()
     {
@@ -32,7 +33,7 @@ class PostTable extends \Core\Table\Table
             WHERE post.id = ?
             ",
             [$id],
-            '\App\Entity\PostEntity',
+            $this->entity,
             true
         );
     }
@@ -59,7 +60,7 @@ class PostTable extends \Core\Table\Table
             LIMIT $limit
             OFFSET $offset",
             null,
-            '\App\Entity\PostEntity',
+            $this->entity,
             false
         );
     }
@@ -81,7 +82,7 @@ class PostTable extends \Core\Table\Table
                 ON post.post_status = status.id 
             ORDER BY post.creation_date DESC",
             null,
-            '\App\Entity\PostEntity',
+            $this->entity,
             false
         );
     }
@@ -104,7 +105,7 @@ class PostTable extends \Core\Table\Table
             WHERE post_category = ?
             ORDER BY post.creation_date DESC",
             [$category_id],
-            '\App\Entity\PostEntity',
+            $this->entity,
             false
         ); 
     }

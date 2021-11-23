@@ -3,6 +3,7 @@ namespace App\Controller;
 use Core\Html\Form;
 use Core\Mail\Mail;
 use \Mpdf\Mpdf;
+
 class PageController extends AppController
 {
     public function __construct()
@@ -50,6 +51,7 @@ class PageController extends AppController
             }
         }
         $form = new Form();
+        $this->setTitle('Contact');
         $this->render('page.contact', compact('form'));
     }
 
@@ -71,6 +73,7 @@ class PageController extends AppController
         }
         else
         {
+            $this->setTitle('CV');
             $this->render('page.resume',compact('skills','experiences','formations','interests','author'));  
         }
 

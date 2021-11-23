@@ -21,9 +21,3 @@
         </div>
     </form>
 </div>
-<script src="https://cdn.tiny.cloud/1/us6lu5txassmmez5y0vq3ber24e0ksic4auvdrcrpbreywwf/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    tinymce.init({
-        selector: 'textarea',
-    });
-</script>
