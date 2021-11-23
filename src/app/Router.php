@@ -25,8 +25,6 @@ class Router
         $request_uri = explode('/', $_SERVER['REQUEST_URI']);
         
         $request_uri = array_diff($request_uri, ['', null, 0, $this->root_directory]);
-        
-        //$request_uri = explode('?', $_SERVER['REQUEST_URI']);
 
         if (!empty($request_uri)) {
             $i = 0;
@@ -53,13 +51,21 @@ class Router
         $controller = $this->getController();
         $method = $this->getMethod();
 
-        if (class_exists($controller) && method_exists($controller, $method)) {
-            $controller = new $controller;
-            $controller->$method();
-        } else {
-            header('Location: /portofolio/error/notfound/');
-            throw new \Exception();;
+        try
+        {
+            if (class_exists($controller) && method_exists($controller, $method)) {
+                $controller = new $controller;
+                $controller->$method();
+            } else {
+                header('Location: /portofolio/error/notfound/');
+                throw new \Exception('Controller or method not found');;
+            }
         }
+        catch(\Exception $e)
+        {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+        
     }
 
     public function getController()

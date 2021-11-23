@@ -42,7 +42,6 @@ class PostController extends AppController
     {
         $posts = $this->post->allinCategory($_GET['id']);
         $category_name = $posts['0']->category_name;
-        var_dump($category_name);
         if($posts) {
             $this->setTitle($category_name);
             $this->render('post.category', compact('posts'));

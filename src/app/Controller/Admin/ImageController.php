@@ -66,7 +66,7 @@ class ImageController extends AppController
         $manager->make($image)
             ->resize(16,16)
             ->encode('ico',100)
-            ->save(ROOT .'/favicon.ico');
+            ->save(ROOT .'/public/favicon.ico');
     }
     
     public function add($image)
