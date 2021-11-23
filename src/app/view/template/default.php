@@ -32,7 +32,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/portofolio/"><img src="<?= ($config->logo) ?: $config->logo; ?> " alt="Logo" width="30" height="auto"></a>
+            <a class="navbar-brand" href="/portofolio/"><img src="<?= ($config->logo_path) ?: $config->logo_path; ?> " alt="Logo" width="30" height="auto"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,8 +66,8 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item text-uppercase fw-light" href="/portofolio/admin/user">Utilisateurs</a></li>
-                                <li><a class="dropdown-item text-uppercase fw-light" href="/portofolio/admin/configuration">Configuration</a></li>
+                                <li><a class="dropdown-item text-uppercase fw-light" href="/portofolio/admin/user/">Utilisateurs</a></li>
+                                <li><a class="dropdown-item text-uppercase fw-light" href="/portofolio/admin/site/">Configuration</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>

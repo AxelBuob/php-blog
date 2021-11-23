@@ -5,10 +5,12 @@
 </div>
 <div class="container">
     <h1 class=""><?= $post->name; ?></h1>
-    <figure class="figure mt-3">
-        <img src="https://picsum.photos/1200?random=<?= $post->id; ?>" class="figure-img rounded" alt="" height="300px" width="auto">
-        <figcaption class="figure-caption text-end">A caption for the above image.</figcaption>
-    </figure>
+    <?php if ($post->image_path) : ?>
+        <figure class="figure mt-3">
+            <img src="<?= $post->image_path; ?>" alt="Demo" class="img-fluid" width="500" height="300">
+            <figcaption class="figure-caption text-end">A caption for the above image.</figcaption>
+        </figure>
+    <?php endif; ?>
     <p><?= $post->content; ?>
 </div>
 </div>

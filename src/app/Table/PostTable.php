@@ -18,14 +18,17 @@ class PostTable extends \Core\Table\Table
             post.post_status, post.post_category, post.post_user,
             category.name AS category_name , 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name, 
-            status.name AS status_name 
+            image.id AS image_id, image.path AS image_path, image.dir AS image_dir,
+            status.name AS status_name
             FROM post
             LEFT JOIN category
                 ON post.post_category = category.id
             LEFT JOIN user
                 ON post.post_user = user.id
             LEFT JOIN status
-                ON post.post_status = status.id 
+                ON post.post_status = status.id
+            LEFT JOIN image
+                    on post.post_image = image.id
             WHERE post.id = ?
             ",
             [$id],
@@ -41,8 +44,8 @@ class PostTable extends \Core\Table\Table
             post.post_status, post. post_category, post.post_user,
             category.name AS category_name, 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name,
-            image.path AS image,
-            status.name AS status_name 
+            status.name AS status_name,
+            image.path AS image 
             FROM post
             LEFT JOIN category
                 ON post.post_category = category.id
@@ -51,7 +54,7 @@ class PostTable extends \Core\Table\Table
             LEFT JOIN status
                 ON post.post_status = status.id 
             LEFT JOIN image
-                ON post.id = image.image_post
+                on post.post_image = image.id
             ORDER BY post.creation_date DESC
             LIMIT $limit
             OFFSET $offset",

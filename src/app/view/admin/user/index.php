@@ -1,11 +1,6 @@
-<p>
-
-</p>
-
-
 <div class="container mt-5 ">
     <div class="d-flex justify-content-end">
-        <a class="btn btn-warning link-dark text-uppercase fw-light" href="?p=admin.user.add">Ajouter un utilisateur</a>
+        <a class="btn btn-warning link-dark text-uppercase fw-light" href="/portofolio/admin/user/add/">Ajouter un utilisateur</a>
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -24,8 +19,8 @@
                         <td><?= $user->role_name; ?></td>
                         <td><?= $user->creation_date; ?></td>
                         <td>
-                            <a class="btn btn-outline-warning" href="?p=admin.user.edit&id=<?= $user->id; ?>">Éditer</a>
-                            <form class="d-inline" action="?p=admin.user.delete" method="post">
+                            <a class="btn btn-outline-warning" href="/portofolio/admin/user/edit/?id=<?= $user->id; ?>">Éditer</a>
+                            <form class="d-inline" action="/portofolio/admin/user/delete/" method="post">
                                 <input type="hidden" name="id" value="<?= $user->id; ?>">
                                 <button type="submit" class="btn btn-outline-danger">Supprimer</button>
                             </form>

@@ -27,6 +27,12 @@ class Table
         return $this->db;
     }
 
+    public function getLastId()
+    {
+        return $this->db->lastInsertId();
+    }
+
+
     public function query($statement, $attributes, $class_name, $unique)
     {
         if($attributes === null)

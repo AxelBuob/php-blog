@@ -34,11 +34,12 @@ class UserController extends AppController
                 'user_role' => $_POST['user_role']
             ]);
             if ($result) {
-                header('Location: ?p=admin.user.index');
-                die();
+                $_SESSION['flash']['success'] = "L'utilisatateur a bien été modifié.";
+                header('Location: /portofolio/admin/user/');
+                exit();
             }
         }
-        $user = $this->user->findUserId($_GET['id']);
+        $user = $this->user->find($_GET['id']);
         $roles = $this->role->extract('id', 'name');
         $form = new Form($user);
         $this->render('admin.user.edit', compact('user', 'form', 'roles'));
@@ -56,8 +57,9 @@ class UserController extends AppController
 
             ]);
             if ($result) {
-                header('Location: ?p=admin.user.index');
-                die();
+                $_SESSION['flash']['success'] = "L'utilisatateur a bien été ajouté.";
+                header('Location: /portofolio/admin/user/');
+                exit();
             }
         }
         $roles = $this->role->extract('id', 'name');
@@ -70,8 +72,9 @@ class UserController extends AppController
         if (!empty($_POST)) {
             $result = $this->user->delete($_POST['id']);
             if ($result) {
-                header('Location: ?p=admin.user.index');
-                die();
+                $_SESSION['flash']['success'] = "L'utilisatateur a bien été supprimé.";
+                header('Location: /portofolio/admin/user/');
+                exit();
             }
         }
     }

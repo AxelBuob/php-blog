@@ -2,10 +2,10 @@
     <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
-                <?php if($post_image): ?>
-                    <img src="<?= $post_image->path; ?>" alt="Image à la une" width="150px" height="auto">
-                    <div class="container">
-                        <a href="/portofolio/admin/image/delete/?id=<?=$post_image->id; ?>" class="btn btn-outline-danger btn-sm mt-3">Supprimer</a>
+                <?php if ($post->image_path) : ?>
+                    <?= $form->input('image', 'Image à la une', '', ['type' => 'file']); ?>
+                    <div class="my-3">
+                        <img src="<?= $post->image_path; ?>" alt="<?= $post->name; ?>" width="200px" height="auto">
                     </div>
                 <?php else : ?>
                     <?= $form->input('image', 'Image à la une', '', ['type' => 'file']); ?>
