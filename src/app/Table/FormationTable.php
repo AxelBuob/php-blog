@@ -6,18 +6,6 @@ class FormationTable extends \Core\Table\Table
 {
     protected $table = 'formation';
 
-    // public function find($id)
-    // {
-    //     return $this->query(
-    //         "SELECT * 
-    //         FROM formation
-    //         WHERE id = ?",
-    //         [$id],
-    //         null,
-    //         true
-    //     );
-    // }
-
     public function all()
     {
         return $this->query(
