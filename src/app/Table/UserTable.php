@@ -14,7 +14,7 @@ class UserTable extends \Core\Table\Table
     public function all()
     {
         return $this->query(
-            "SELECT user.id, user.email, DATE_FORMAT(user.confirmed_at, '%d/%m/%y à %hh%m') AS creation_date, 
+            "SELECT user.id, user.email, DATE_FORMAT(user.confirmed_at, '%d/%m/%y à %hh%m') AS creation_date, CONCAT(user.first_name, ' ' , user.last_name) AS name, 
             role.name AS role_name 
             FROM user
             LEFT JOIN role

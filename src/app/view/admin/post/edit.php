@@ -12,9 +12,11 @@
                 <?php endif; ?>
                 <?= $form->select('post_status', 'Status', $status); ?>
                 <?= $form->select('post_category', 'Catégorie', $categories); ?>
+                <?= $form->select('post_user', 'Auteur', $author); ?>
             </div>
             <div class="col-md-8">
                 <?= $form->input('name', "Titre"); ?>
+                <?= $form->input('excerpt', "En-tête"); ?>
                 <?= $form->input('content', 'Contenu', '', ['type' => 'textarea']); ?>
                 <?= $form->submit('Enregistrer'); ?>
             </div>

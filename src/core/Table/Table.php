@@ -2,7 +2,6 @@
 namespace Core\Table;
 
 use Core\Database\MysqlDatabase;
-use Core\Html\Html;
 
 class Table
 {

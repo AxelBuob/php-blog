@@ -5,6 +5,7 @@
 </div>
 <div class="container">
     <h1 class=""><?= $post->name; ?></h1>
+    <h2><?= $post->excerpt; ?></h2>
     <?php if ($post->image_path) : ?>
         <figure class="figure mt-3">
             <img src="<?= $post->image_path; ?>" alt="Demo" class="img-fluid" width="500" height="300">

@@ -14,6 +14,7 @@ class PostController extends AppController
         $this->loadModel('category');
         $this->loadModel('status');
         $this->loadModel('image');
+        $this->loadModel('user');
     }
 
     public function index()
@@ -60,8 +61,10 @@ class PostController extends AppController
     public function edit()
     {
         $post = $this->post->find($_GET['id']);
+        $author = $this->user->extract('id', 'name');
         $categories = $this->category->extract('id', 'name');
         $status = $this->status->extract('id', 'name');
+
         $form = new Form($post);
         
         if (!empty($_POST)) {
@@ -80,11 +83,13 @@ class PostController extends AppController
                 }
             }
             $update_post = $this->post->update($_GET['id'],[
-                'name' => $_POST['name'], 
+                'name' => $_POST['name'],
+                'excerpt' => $_POST['excerpt'],
                 'content' => $_POST['content'], 
                 'post_category' => $_POST['post_category'],
                 'post_status' => $_POST['post_status'],
-                'post_image' => $image_last_insert_id
+                'post_image' => $image_last_insert_id,
+                'post_user' => $_POST['post_user']
                 
             ]);
             if ($update_post) {
@@ -93,7 +98,7 @@ class PostController extends AppController
                 throw new \Exception();;
             }
         }
-        $this->render('admin.post.edit', compact('post', 'categories', 'status', 'form'));
+        $this->render('admin.post.edit', compact('post', 'categories', 'status', 'form', 'author'));
     }
 
     public function delete()
