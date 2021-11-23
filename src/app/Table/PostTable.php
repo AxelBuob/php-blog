@@ -15,7 +15,7 @@ class PostTable extends \Core\Table\Table
     public function find($id)
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
+            "SELECT post.id, post.name, post.excerpt, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
             post.post_status, post.post_category, post.post_user,
             category.name AS category_name , 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name, 
@@ -41,7 +41,7 @@ class PostTable extends \Core\Table\Table
     public function paginate($limit, $offset)
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
+            "SELECT post.id, post.name, post.excerpt, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
             post.post_status, post. post_category, post.post_user,
             category.name AS category_name, 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name,
@@ -68,7 +68,7 @@ class PostTable extends \Core\Table\Table
     public function all()
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
+            "SELECT post.id, post.name, post.excerpt, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date, 
             post.post_status, post. post_category, post.post_user,
             category.name AS category_name , 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name,
@@ -90,7 +90,7 @@ class PostTable extends \Core\Table\Table
     public function allinCategory($category_id)
     {
         return $this->query(
-            "SELECT post.id, post.name, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date,
+            "SELECT post.id, post.name, post.excerpt, post.content, DATE_FORMAT(post.creation_date, '%W %d %b, %Y') AS creation_date,
             post.post_category, post.post_user, post.post_status, 
             category.name AS category_name , 
             CONCAT(user.first_name, ' ', user.last_name) AS user_name,
