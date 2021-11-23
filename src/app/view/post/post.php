@@ -28,7 +28,7 @@
                     </figcaption>
                 </figure>
                 <?php if ($auth && $comment->user_id === $_SESSION['user_id']) : ?>
-                    <form class="mt-3" action="?p=comment.delete" method="post">
+                    <form class="mt-3" action="/portofolio/comment/delete/" method="post">
                         <?= $form->input('comment_id', '', '', ['type' => 'hidden', 'value' => $comment->id]); ?>
                         <?= $form->input('post_id', '', '', ['type' => 'hidden', 'value' => $comment->post_id]); ?>
                         <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>

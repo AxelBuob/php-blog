@@ -1,4 +1,5 @@
 {
+    "licence": "proprietary",
     "require": {
         "mpdf/mpdf": "^8.0",
         "intervention/image": "^2.7"

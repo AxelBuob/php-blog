@@ -40,7 +40,7 @@ class SiteController extends \App\Controller\Admin\AppController
             if ($result) {
                 $_SESSION['flash']['success'] = 'La configuration du site a bien été modifié';
                 header('Location: /portofolio/admin/site/');
-                exit();
+                throw new \Exception();;
             }
         }
         $this->render('admin.site.edit', compact('site', 'form'));

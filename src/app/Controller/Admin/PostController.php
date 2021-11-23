@@ -49,7 +49,7 @@ class PostController extends AppController
             ]);
             if ($create_post) {
                 header('Location: /portofolio/admin/post/');
-                exit();
+                throw new \Exception();;
             }
         }   
         
@@ -90,7 +90,7 @@ class PostController extends AppController
             if ($update_post) {
                 $_SESSION['flash']['success'] = 'Article mis à jour avec succès';
                 header('Location: /portofolio/admin/post/edit/?id='.$post->id);
-                exit();
+                throw new \Exception();;
             }
         }
         $this->render('admin.post.edit', compact('post', 'categories', 'status', 'form'));
@@ -103,7 +103,7 @@ class PostController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'article a bien été supprimé";
                 header('Location: /portofolio/admin/post/');
-                exit();
+                throw new \Exception();;
             }
         }
     }

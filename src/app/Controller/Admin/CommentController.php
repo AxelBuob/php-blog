@@ -34,7 +34,7 @@ class CommentController extends AppController
             {
                 $_SESSION['flash']['success'] = 'Le status du commentaire a bien été modifié.';
                 header('Location: /portofolio/admin/comment/');
-                exit();
+                throw new \Exception();;
             }
         }
         $status = $this->status->extract('id', 'name'); 
@@ -50,11 +50,11 @@ class CommentController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = 'Le commentaire a bien été supprimé';
                 header('Location: /portofolio/admin/comment/');
-                exit();
+                throw new \Exception();;
             }
             $_SESSION['flash']['danger'] = 'Oups! Une erreur est survenus';
             header('Location: /portofolio/admin/comment/');
-            exit();
+            throw new \Exception();;
         }
     }
 }

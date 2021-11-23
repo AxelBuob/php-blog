@@ -26,7 +26,7 @@ class CategoryController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = 'La catégorie a bien été ajouté';
                 header('Location: /portofolio/admin/category/');
-                exit();
+                throw new \Exception();;
             }
         }
         $form = new Form($_POST);
@@ -40,7 +40,7 @@ class CategoryController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = 'La catégorie a bien été modifié';
                 header('Location: /portofolio/admin/category/');
-                exit();
+                throw new \Exception();;
             }
         }
 
@@ -56,7 +56,7 @@ class CategoryController extends AppController
             if ($result) {
                 $_SESSION['flash']['success'] = 'La catégorie a bien été supprimé';
                 header('Location: /portofolio/admin/category/');
-                exit();
+                throw new \Exception();;
             }
         }
     }

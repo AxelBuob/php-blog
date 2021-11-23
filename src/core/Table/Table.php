@@ -2,6 +2,7 @@
 namespace Core\Table;
 
 use Core\Database\MysqlDatabase;
+use Core\Html\Html;
 
 class Table
 {
@@ -12,14 +13,6 @@ class Table
     public function __construct(MysqlDatabase $db)
     {
         $this->db = $db;
-        if($this->table === null)
-        {
-            $class_name = explode('\\', get_called_class());
-            $class_name = end($class_name);
-            $class_name = str_replace('Table', '', $class_name);
-            $class_name = strtolower($class_name);
-            $this->table = $class_name;
-        }
     }
 
     public function getDB()
@@ -37,23 +30,28 @@ class Table
     {
         if($attributes === null)
         {
-            return $this->db->query($statement, $class_name, $unique);
+            $query = $this->db->query($statement, $class_name, $unique);
         }
         else
         {
-            return $this->db->prepare($statement, $attributes,  $class_name, $unique);
+            $query = $this->db->prepare($statement, $attributes,  $class_name, $unique);
         }
+
+        return $query;
     }
 
     public function all()
     {
-        return $this->query("SELECT * FROM " .$this->table, null, str_replace('Table', 'Entity', get_called_class()), false);
+        $query = $this->query("SELECT * FROM " .$this->table, null, null, false);
+        return $query;
     }
 
     public function find($id)
     {
-        return $this->query("SELECT * FROM " . $this->table . " WHERE id = ?", [$id], str_replace('Table', 'Entity', get_called_class()), true);
+        $query = $this->query("SELECT * FROM " . $this->table . " WHERE id = ?", [$id], null, true);
+        return $query;
     }
+
 
     public function update($id, $fields)
     {
@@ -76,7 +74,7 @@ class Table
         $attributes = [];
         foreach ($fields as $key => $value) {
             $sql_parts[] = "$key = ?";
-            $attributes[] = $value;
+            $attributes[] = htmlentities($value, ENT_QUOTES);
         }
         $sql_part = implode(',', $sql_parts);
 

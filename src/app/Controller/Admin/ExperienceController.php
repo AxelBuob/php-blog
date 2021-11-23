@@ -35,7 +35,7 @@ class ExperienceController extends \App\Controller\Admin\AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'expérience a bien été ajouté";
                 header('Location: /portofolio/admin/experience');
-                exit();
+                throw new \Exception();;
             }
         }
         $form = new Form;
@@ -72,7 +72,7 @@ class ExperienceController extends \App\Controller\Admin\AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "L'expérience a bien été supprimé";
                 header('Location: /portofolio/admin/experience');
-                die();
+                throw new \Exception();;
             }
         }
     }

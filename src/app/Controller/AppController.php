@@ -6,7 +6,6 @@ class AppController extends \Core\Controller\Controller
 {
     protected $template;
     protected $viewPath;
-    protected $title = 'Axel Buob | Développeur PHP/Symphony';
     protected $upload_path;
 
     public function __construct()

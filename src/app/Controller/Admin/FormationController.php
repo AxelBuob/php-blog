@@ -35,7 +35,7 @@ class FormationController extends \App\Controller\Admin\AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "La formation a bien été ajouté";
                 header('Location: /portofolio/admin/formation/');
-                exit();
+                throw new \Exception();;
             }
         }
         $form = new Form;
@@ -58,7 +58,7 @@ class FormationController extends \App\Controller\Admin\AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "La formation a bien été modifié";
                 header('Location: /portofolio/admin/formation/');
-                exit();
+                throw new \Exception();;
             }
         }
         $formation = $this->formation->find($_GET['id']);
@@ -73,7 +73,7 @@ class FormationController extends \App\Controller\Admin\AppController
             if ($result) {
                 $_SESSION['flash']['success'] = "La formation a bien été supprimé";
                 header('Location: /portofolio/admin/formation/');
-                exit();
+                throw new \Exception();;
             }
         }
     }

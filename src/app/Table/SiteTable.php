@@ -4,6 +4,8 @@ namespace App\Table;
 
 class SiteTable extends \Core\Table\Table
 {
+    protected $table = 'site';
+
     public function find($id)
     {
         return $this->query(
