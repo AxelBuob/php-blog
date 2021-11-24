@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="<?= ($config->language) ? $config->language : "fr"; ?>" class="h-100">
 
 <head>
     <meta charset="<?= ($config->charset) ? $config->charset : "UTF-8"; ?>">
@@ -9,15 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.6" media="print">
     <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.6/dist/themes/oldstyle.min.css" media="print">
-
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/portoflio/public/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/portofolio/public/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/portoflio/public/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/portofolio/public/img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/portofolio/public/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#00aba9">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/ico" sizes="16x16" href="/portofolio/public/favicon.ico">
+    <link rel="manifest" href="/portofolio/public/site.webmanifest">
     <!-- Custom font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap');
@@ -32,7 +26,13 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/portofolio/"><img src="<?= ($config->logo_path) ?: $config->logo_path; ?> " alt="Logo" width="30" height="auto"></a>
+            <a class="navbar-brand" href="/portofolio/">
+                <?php if($config->logo_path) : ?>
+                <img src="<?= ($config->logo_path) ?: $config->logo_path; ?> " alt="Logo" width="30" height="auto">
+                <?php else: ?>
+                    <img src="/portofolio/public/img/logo.png" alt="Logo" width="30" height="auto">
+                <?php endif; ?>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -140,4 +140,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/7be4a1afd8.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
