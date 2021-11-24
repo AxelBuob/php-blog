@@ -122,4 +122,3 @@ class ImageController extends AppController
     }
 
 }
-
