@@ -6,18 +6,6 @@ class ExperienceTable extends \Core\Table\Table
 {
     protected $table = 'experience';
 
-    // public function find($id)
-    // {
-    //     return $this->query(
-    //         "SELECT * 
-    //         FROM experience
-    //         WHERE id = ?",
-    //         [$id],
-    //         null,
-    //         true
-    //     );
-    // }
-
     public function all()
     {
         return $this->query(

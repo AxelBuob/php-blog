@@ -71,7 +71,6 @@ class Form
         $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
 
         $type = isset($options['type']) ? $options['type'] : 'text';
-        //$value = isset($options['value']) ? $options['value'] : '';
 
         $label = "<label class='mt-3 form-label' for='{$name}'>{$label}</label>";
 
@@ -124,5 +123,4 @@ class Form
         $input .= "</select>";
         return $label . $input;
     }
-
 }
