@@ -1,9 +1,0 @@
-
-{
-    "lang": "fr-FR",
-    "name": "Portofolio",
-    "short_name": "Portofolio",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    "start_url": "https://localhost/portofolio",
-    "scope": "/portofolio/"
-}
