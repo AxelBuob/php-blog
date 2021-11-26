@@ -5,7 +5,7 @@
         <?= $form->input("password", "Mot de passe", "Votre mot de passe", ["type" => "password"]); ?>
         <div class="mt-3">
             <?= $form->submit("Valider"); ?>
-            <a class="btn btn-outline-dark text-uppercase fw-light" href="?p=user.forget">Réinitialiser le mot de passe</a>
+            <a class="btn btn-outline-dark text-uppercase fw-light" href="/portofolio/user/forget">Réinitialiser le mot de passe</a>
         </div>
     </form>
 </div>

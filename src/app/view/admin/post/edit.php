@@ -2,7 +2,7 @@
     <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
-                <?php if ($post->image_path) : ?>
+                <?php if (isset($post->image_path)) : ?>
                     <?= $form->input('image', 'Image à la une', '', ['type' => 'file']); ?>
                     <div class="my-3">
                         <img src="<?= $post->image_path; ?>" alt="<?= $post->name; ?>" width="200px" height="auto">

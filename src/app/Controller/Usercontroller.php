@@ -96,7 +96,7 @@ class UserController extends AppController
                     $id = $this->user->getDB()->lastInsertId();
                     $subject = 'Email de confirmation';
                     $message = 'Merci de confirmer votre email en vous rendant à cette adresse : ';
-                    $message .= 'http://localhost/portofolio/user/confirm/id='. $id .'&token=' . $token;
+                    $message .= 'http://localhost/portofolio/user/confirm/?id='. $id .'&token=' . $token;
                     $from = 'contact@axelbuob.fr';
                     $mail = new Mail($_POST['email'], $from, $subject, $message);
                     $mail->send();
@@ -129,7 +129,7 @@ class UserController extends AppController
                 throw new \Exception();;
             }
         } else {
-            header('Location: /portofolioerror/forbidden');
+            header('Location: /portofolio/error/forbidden');
             throw new \Exception();;
         }
     }
@@ -288,7 +288,7 @@ class UserController extends AppController
                         $id = $user->id;
                         $subject = 'Réinitialisation du mot de passe';
                         $message = 'Merci de vous rendre à cette adresse pour réinitialiser votre mot de passe :';
-                        $message .= 'http://localhost/portofolio/user/reset/id=' . $id . '&token=' . $token;
+                        $message .= 'http://localhost/portofolio/user/reset/?id=' . $id . '&token=' . $token;
                         $from = 'contact@axelbuob.fr';
                         $mail = new Mail($user->email, $from, $subject, $message);
                         $mail->send();
@@ -305,7 +305,7 @@ class UserController extends AppController
     
     public function reset()
     {
-        $user = $this->user->findUserId($_GET['id']);
+        $user = $this->user->find($_GET['id']);
         if(!$user)
         {
             header('Location: /portofolio/error/notfound');
@@ -324,8 +324,7 @@ class UserController extends AppController
                     {
                         $result = $this->user->update($_GET['id'], [
                             'password' => $this->auth->hashPassword($_POST['password']),
-                            'reset_token' => null,
-                            'reset_at' => null
+                            'reset_token' => null
                         ]);
                         if ($result) {
                             $_SESSION['flash']['success'] = 'Votre mot de passe a bien été réinitialisé';

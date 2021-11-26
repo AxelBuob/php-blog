@@ -28,6 +28,7 @@ class PostController extends AppController
         $categories = $this->category->extract('id', 'name');
         $status = $this->status->extract('id', 'name');
         $form = new Form($_POST);
+        $author = $this->user->extract('id', 'name');
 
         if (!empty($_POST)) {
             if (is_array($_FILES['image']) && $_FILES['image']['tmp_name'])
@@ -42,11 +43,11 @@ class PostController extends AppController
             $create_post = $this->post->create([
                 'name' => $_POST['name'], 
                 'content' => $_POST['content'],
+                'excerpt' => $_POST['excerpt'],
                 'creation_date' => date("Y-m-d H:i:s"),
                 'post_category' => $_POST['post_category'],
                 'post_status' => $_POST['post_status'],
-                'post_user' => $_SESSION['user_id'],
-                'post_image' => $image_last_insert_id
+                'post_user' => $_SESSION['user_id']
             ]);
             if ($create_post) {
                 header('Location: /portofolio/admin/post/');
@@ -55,7 +56,7 @@ class PostController extends AppController
         }   
         
         
-        $this->render('admin.post.edit', compact('form', 'categories', 'status'));
+        $this->render('admin.post.edit', compact('form', 'categories', 'status','author'));
     }
 
     public function edit()
