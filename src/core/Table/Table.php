@@ -2,6 +2,7 @@
 namespace Core\Table;
 
 use Core\Database\MysqlDatabase;
+use \App\Factory;
 
 class Table
 {
@@ -41,13 +42,15 @@ class Table
 
     public function all()
     {
-        $query = $this->query("SELECT * FROM " .$this->table, null, null, false);
+        $table = addslashes($this->table);
+        $query = $this->query("SELECT * FROM " .$table, null, null, false);
         return $query;
     }
 
     public function find($id)
     {
-        $query = $this->query("SELECT * FROM " . $this->table . " WHERE id = ?", [$id], null, true);
+        $table = addslashes($this->table);
+        $query = $this->query("SELECT * FROM " . $table . " WHERE id = ?", [$id], null, true);
         return $query;
     }
 
@@ -59,7 +62,7 @@ class Table
         foreach($fields as $key => $value)
         {
             $sql_parts[] = "$key = ?";
-            $attributes[] = $value;
+            $attributes[] = htmlentities($value, ENT_QUOTES);
         }
         $sql_part = implode(',', $sql_parts);
         $attributes[] = $id;

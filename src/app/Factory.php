@@ -4,7 +4,7 @@ namespace App;
 
 use Core\Database\MysqlDatabase;
 use Core\Config;
-use Exception;
+
 
 class Factory
 {

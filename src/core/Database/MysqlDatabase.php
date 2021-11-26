@@ -20,7 +20,7 @@ class MysqlDatabase
         $this->db_pass = $db_pass;
     }
 
-    private function getPDO()
+    public function getPDO()
     {
         if($this->pdo === null)
         {
