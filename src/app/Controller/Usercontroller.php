@@ -250,6 +250,10 @@ class UserController extends AppController
             {
                 $_SESSION['flash']['warning'] = 'Les deux mots de passe ne correspondent pas';
             }
+            elseif (strlen($_POST['password']) < 8 || !$this->password_strength_check($_POST['password']))
+            {
+                $_SESSION['flash']['danger']  = 'Votre mot de passe doit contenir au moins 8 caractères, dont une lettre en capitale, un chiffre et un caractère spécial (!@#$%).';
+            }
             else
             {
                 $result = $this->user->update($_SESSION['user_id'],[

@@ -21,7 +21,7 @@
                             <a class="btn btn-outline-warning" href="/portofolio/admin/comment/show/?id=<?= $comment->id; ?>">Lire</a>
                             <form class="d-inline" action="/portofolio/admin/comment/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $comment->id; ?>">
-                                <button class="btn btn-outline-danger">Supprimer</button>
+                                <button onclick="return confirm('Confirmer la suppression ?');"  class="btn btn-outline-danger">Supprimer</button>
                             </form>
                         </td>
                     </tr>

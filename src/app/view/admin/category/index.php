@@ -18,7 +18,7 @@
                             <a class="btn btn-outline-warning" href="/portofolio/admin/category/edit/?id=<?= $category->id; ?>">Éditer</a>
                             <form class="d-inline" action="/portofolio/admin/category/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $category->id; ?>">
-                                <button class="btn btn-outline-danger">Supprimer</button>
+                                <button onclick="return confirm('Confirmer la suppression ?');" class="btn btn-outline-danger">Supprimer</button>
                             </form>
                         </td>
                     </tr>
