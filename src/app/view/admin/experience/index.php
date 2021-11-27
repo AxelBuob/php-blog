@@ -24,7 +24,7 @@
                             <a href="/portofolio/admin/experience/edit/?id=<?= $experience->id; ?>" class="btn btn-outline-warning">Éditer</a>
                             <form class="d-inline" action="/portofolio/admin/experience/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $experience->id; ?>">
-                                <button class="btn btn-outline-danger">Supprimer</button>
+                                <button onclick="return confirm('Confirmer la suppression ?');"  class="btn btn-outline-danger">Supprimer</button>
                             </form>
                         </td>
                     </tr>

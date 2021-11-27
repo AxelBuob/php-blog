@@ -26,7 +26,7 @@
                             <a class="btn btn-outline-warning" href="/portofolio/admin/post/edit/?id=<?= $post->id; ?>">Éditer</a>
                             <form class="d-inline" action="/portofolio/admin/post/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $post->id; ?>">
-                                <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                                <button onclick="return confirm('Confirmer la suppression ?');" type="submit" class="btn btn-outline-danger">Supprimer</button>
                             </form>
                         </td>
                     </tr>

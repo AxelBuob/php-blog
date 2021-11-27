@@ -20,7 +20,7 @@
                             <a href="/portofolio/admin/skill/edit/?id=<?= $skill->id; ?>" class="btn btn-outline-warning">Éditer</a>
                             <form class="d-inline" action="/portofolio/admin/skill/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $skill->id; ?>">
-                                <button class="btn btn-outline-danger">Supprimer</button>
+                                <button onclick="return confirm('Confirmer la suppression ?');"  class="btn btn-outline-danger">Supprimer</button>
                             </form>
                         </td>
                     </tr>
