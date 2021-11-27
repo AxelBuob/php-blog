@@ -1,6 +1,9 @@
 <?php
 
 namespace App;
+
+use Exception;
+
 class Router
 {
     private $root_directory;
@@ -23,26 +26,34 @@ class Router
     private function explodeURI()
     {
         $request_uri = explode('/', $_SERVER['REQUEST_URI']);
-        
         $request_uri = array_diff($request_uri, ['', null, 0, $this->root_directory]);
+        $regex_xml = '/^([a-z]+).([xml]{3})$/';
+        $regex_get = '/^(&|\?)([a-z]+)=([0-9]+)$/';
 
         if (!empty($request_uri)) {
             $i = 0;
             foreach ($request_uri as $k => $v) {
-                $regex = '/^(&|\?)([a-z]+)=([0-9]+)$/';
-                if (!preg_match($regex, $request_uri[$k])) {
-                    $route[$i] = $request_uri[$k];
-                    $i++;
+                if (preg_match($regex_get, $request_uri[$k])) {
+                    $route[$i] = $request_uri[$k]; 
+                }
+                elseif(preg_match($regex_xml, $request_uri[$k]))
+                {
+                    header('Content-Type: application/xml; charset=utf-8');
+                    require($request_uri[$k]);
+                    exit();
                 }
                 else 
                 {
-                    $route[$i] = $request_uri[$k]; 
-                }
-                
+                    $route[$i] = $request_uri[$k];
+                    $i++;
+                }  
             }
-        } else {
-            $route = false;
         }
+        else
+        {
+            $route = $request_uri;
+        }
+
         return $route;
     }
 
@@ -60,11 +71,13 @@ class Router
                 header('Location: /portofolio/error/notfound/');
                 throw new \Exception('Controller or method not found');;
             }
+
         }
         catch(\Exception $e)
         {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
+            
         
     }
 

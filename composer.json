@@ -6,7 +6,8 @@
     ],
     "require": {
         "mpdf/mpdf": "^8.0",
-        "intervention/image": "^2.7"
+        "intervention/image": "^2.7",
+        "samdark/sitemap": "dev-master"
     },
     "minimum-stability": "dev"
 }
