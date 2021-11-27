@@ -58,6 +58,8 @@ class UserController extends AppController
         
     }
 
+
+
     public function signup()
     {
 
@@ -79,6 +81,10 @@ class UserController extends AppController
             elseif (empty($_POST['password']) || $_POST['password'] !== $_POST['password_confirm'])
             {
                 $_SESSION['flash']['danger']  = 'Veuillez renseigner un mot de passe valide';
+            }
+            elseif(strlen($_POST['password']) < 8 || !$this->password_strength_check($_POST['password']))
+            {
+                $_SESSION['flash']['danger']  = 'Votre mot de passe doit contenir au moins 8 caractères, dont une lettre en capitale, un chiffre et un caractère spécial (!@#$%).';  
             }
             else 
             {
@@ -236,7 +242,15 @@ class UserController extends AppController
         }
         if(!empty($_POST))
         {
-            if(!empty($_POST['password']) && !empty($_POST['password_confirm']) && $_POST['password'] === $_POST['password_confirm'])
+            if(empty($_POST['password']) && !empty($_POST['password_confirm']))
+            {
+                $_SESSION['flash']['warning'] = 'Veuillez renseigner votre mot de passe';
+            }
+            elseif($_POST['password'] !== $_POST['password_confirm'])
+            {
+                $_SESSION['flash']['warning'] = 'Les deux mots de passe ne correspondent pas';
+            }
+            else
             {
                 $result = $this->user->update($_SESSION['user_id'],[
                     'password' => $this->auth->hashPassword($_POST['password'])
@@ -246,10 +260,6 @@ class UserController extends AppController
                     header('Location: /portofolio/user/setting/?id='.$_SESSION['user_id']);
                     throw new \Exception();;
                 }
-            }
-            else
-            {
-                $_SESSION['flash']['warning'] = 'Les deux mots de passe ne correspondent pas';
             }
         }
         $user = $this->user->find($_SESSION['user_id']);
@@ -314,14 +324,24 @@ class UserController extends AppController
         else
         {
             if (!empty($_POST)) {
-                if (!empty($_POST['password']) && !empty($_POST['password_confirm']) && $_POST['password'] === $_POST['password_confirm']) {
-                    if(!$_GET['token'] === $user->reset_token)
-                    {
+                if (empty($_POST['password']) && !empty($_POST['password_confirm']))
+                {
+                    $_SESSION['flash']['warning'] = 'Veuillez renseigner votre mot de passe';
+                }
+                elseif ($_POST['password'] !== $_POST['password_confirm'])
+                {
+                    $_SESSION['flash']['warning'] = 'Les deux mots de passe ne correspondent pas';
+                }
+                elseif (strlen($_POST['password']) < 8 || !$this->password_strength_check($_POST['password']))
+                {
+                    $_SESSION['flash']['danger']  = 'Votre mot de passe doit contenir au moins 8 caractères, dont une lettre en capitale, un chiffre et un caractère spécial (!@#$%).';
+                }
+                else
+                {
+                    if (!$_GET['token'] === $user->reset_token) {
                         header('Location: /portofolio/error/forbidden');
                         throw new \Exception();;
-                    }
-                    else
-                    {
+                    } else {
                         $result = $this->user->update($_GET['id'], [
                             'password' => $this->auth->hashPassword($_POST['password']),
                             'reset_token' => null
@@ -333,14 +353,34 @@ class UserController extends AppController
                         }
                     }
                 }
-                else
-                {
-                    $_SESSION['flash']['warning'] = 'Les deux mots de passe ne correspondent pas';
-                }
             }
         }
        
         $form = new Form($user);
         $this->render('user.password', compact('form', 'user')); 
+    }
+    public function password_strength_check($password, $min_len = 8, $max_len = 70, $req_digit = 1, $req_lower = 1, $req_upper = 1, $req_symbol = 1)
+    {
+        // Build regex string depending on requirements for the password
+        $regex = '/^';
+        if ($req_digit == 1) {
+            $regex .= '(?=.*\d)';
+        }              // Match at least 1 digit
+        if ($req_lower == 1) {
+            $regex .= '(?=.*[a-z])';
+        }           // Match at least 1 lowercase letter
+        if ($req_upper == 1) {
+            $regex .= '(?=.*[A-Z])';
+        }           // Match at least 1 uppercase letter
+        if ($req_symbol == 1) {
+            $regex .= '(?=.*[^a-zA-Z\d])';
+        }    // Match at least 1 character that is none of the above
+        $regex .= '.{' . $min_len . ',' . $max_len . '}$/';
+
+        if (preg_match($regex, $password)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 }

@@ -1,6 +1,6 @@
 <div class="container my-5">
     <h1>Paramètres du compte</h1>
-    <a class="btn btn-outline-dark" href="?p=user.password">Changer de mot de passe</a>
+    <a class="btn btn-outline-dark" href="/portofolio/user/password">Changer de mot de passe</a>
     <form action="#" method="post">
         <?= $form->input('first_name', 'Prénom', 'Votre prénom'); ?>
         <?= $form->input('last_name', 'Nom', 'Votre nom'); ?>
