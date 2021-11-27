@@ -3,7 +3,6 @@
 use \App\Factory;
 use \App\Router;
 use samdark\sitemap\Sitemap;
-use samdark\sitemap\Index;
 
 define('ROOT', dirname(__DIR__));
 define('BASE_DIR', 'portofolio');
@@ -20,6 +19,10 @@ require '../vendor/autoload.php';
 require ROOT . '/src/app/Factory.php';
 Factory::autoloading();
 
+$router = new Router(BASE_DIR);
+$router->init();
+
+// Sitemap
 $sitemap = new Sitemap(__DIR__ . '/sitemap.xml');
 // Page
 $sitemap->addItem(HOST . '/page/contact',);
@@ -29,7 +32,6 @@ $sitemap->addItem(HOST . '/user/signin');
 $sitemap->addItem(HOST . '/user/signout');
 $sitemap->addItem(HOST . '/user/forget');
 $sitemap->addItem(HOST . '/user/show/?id=1');
-
 
 // POST
 $sitemap->addItem(HOST . '/post/show/?id=3');
@@ -45,10 +47,6 @@ $sitemap->write();
 $sitemapFileUrls = $sitemap->getSitemapUrls('http://localhost/portofolio/');
 
 
-
-
-$router = new Router(BASE_DIR);
-$router->init();
 
 
 

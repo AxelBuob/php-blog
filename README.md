@@ -12,3 +12,6 @@ Installation instruction
 2. Import the php-blog.sql file in your database
 3. Register your database information in /portofolio/config/config.php
 4. Run "composer install" to install dependencies
+
+Admin email: contact@axelbuob.fr
+Admin password: password

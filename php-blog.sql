@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2021 at 11:49 AM
+-- Generation Time: Nov 27, 2021 at 06:10 PM
 -- Server version: 8.0.26
 -- PHP Version: 8.0.12
 
@@ -39,9 +39,7 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id`, `name`) VALUES
 (1, 'Linux'),
 (2, 'CSS'),
-(3, 'Javascript'),
-(4, 'PHP'),
-(6, 'Python');
+(3, 'Javascript');
 
 -- --------------------------------------------------------
 
@@ -57,13 +55,6 @@ CREATE TABLE `comment` (
   `comment_post` int NOT NULL,
   `comment_status` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`id`, `content`, `creation_date`, `comment_user`, `comment_post`, `comment_status`) VALUES
-(26, '&amp;lt;script&amp;gt;alert(&#039;hello&#039;)&amp;lt;/script&amp;gt;', '2021-11-23 13:47:26', 1, 28, 2);
 
 -- --------------------------------------------------------
 
@@ -150,8 +141,7 @@ CREATE TABLE `interest` (
 
 INSERT INTO `interest` (`id`, `name`) VALUES
 (2, 'Apprentissage de l\'anglais'),
-(3, 'Design graphique'),
-(6, '&lt;script&gt;alert(&#039;Hello&#039;);&lt;/script&gt;');
+(3, 'Design graphique');
 
 -- --------------------------------------------------------
 
@@ -176,33 +166,9 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `name`, `excerpt`, `content`, `creation_date`, `post_status`, `post_user`, `post_category`, `post_image`) VALUES
-(1, 'Hello world!', '', '<p style=\"text-align: justify;\">Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.</p>', '2021-10-18 11:42:41', 3, 1, 1, NULL),
-(2, 'Bonjour le monde !', '', '<p>Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.</p>', '2021-10-18 11:42:41', 3, 1, 3, NULL),
-(3, 'Ciao la vida!', '', '<p>Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.</p>', '2021-10-18 11:42:41', 3, 1, 2, NULL),
-(5, 'Uniquely seize ', '', '<p>Distinctively unleash scalable ideas without turnkey best practices. Quickly supply multidisciplinary markets via ethical channels. Proactively aggregate empowered infrastructures and team driven initiatives. Synergistically leverage other\'s multifunctional web services vis-a-vis impactful initiatives. Completely leverage existing real-time technology via installed base results. Uniquely seize client-centered manufactured products before premium e-commerce. Objectively enable bleeding-edge deliverables.</p>', '2021-11-03 10:19:10', 3, 1, 3, NULL),
-(6, 'Without covalent portals', '', '<p>Interactively morph process-centric networks before interoperable vortals. Progressively conceptualize interoperable systems without client-focused benefits. Quickly recaptiualize high-quality mindshare whereas backward-compatible e-commerce. Competently drive orthogonal materials vis-a-vis interoperable mindshare. Efficiently pursue cutting-edge e-services without covalent portals. Uniquely promote cooperative vortals rather than cross-media.</p>', '2021-11-03 10:21:06', 3, 1, 4, NULL),
-(7, 'Holisticly visualize', '', 'Intrinsicly create front-end e-services vis-a-vis stand-alone ROI. Competently visualize enterprise-wide deliverables via standardized functionalities. Professionally synthesize fully tested relationships vis-a-vis extensible portals. Appropriately enable professional \"outside the box\" thinking vis-a-vis business ROI. Energistically myocardinate high-payoff resources vis-a-vis emerging sources.\r\n\r\nHolisticly visualize client-centered.', '2021-11-09 16:48:46', 3, 1, 3, NULL),
-(8, 'Lorem ipsum!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:49:56', 3, 1, 1, NULL),
-(9, 'Hello world!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:50:23', 3, 1, 1, NULL),
-(10, 'Hello world!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:50:45', 3, 1, 1, NULL),
-(11, 'Hello world!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:51:05', 3, 1, 1, NULL),
-(12, 'Hello world!', '', '<p>Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.</p>', '2021-11-09 16:51:32', 3, 1, 1, NULL),
-(13, 'Hello world!', '', '<p>Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.</p>', '2021-11-09 16:51:47', 3, 1, 1, NULL),
-(14, 'Hello world!', '', '<p>Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.</p>', '2021-11-09 16:51:47', 3, 1, 1, NULL),
-(15, 'Hello world!', '', '<p style=\"text-align: justify;\">Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.</p>', '2021-10-18 11:42:41', 3, 1, 1, NULL),
-(16, 'Bonjour le monde !', '', '<p>Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.</p>', '2021-10-18 11:42:41', 3, 1, 3, NULL),
-(17, 'Ciao la vida!', '', '<p>Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.</p>', '2021-10-18 11:42:41', 3, 1, 2, NULL),
-(18, 'Uniquely seize ', '', '<p>Distinctively unleash scalable ideas without turnkey best practices. Quickly supply multidisciplinary markets via ethical channels. Proactively aggregate empowered infrastructures and team driven initiatives. Synergistically leverage other\'s multifunctional web services vis-a-vis impactful initiatives. Completely leverage existing real-time technology via installed base results. Uniquely seize client-centered manufactured products before premium e-commerce. Objectively enable bleeding-edge deliverables.</p>', '2021-11-03 10:19:10', 3, 1, 3, NULL),
-(19, 'Without covalent portals', '', '<p>Interactively morph process-centric networks before interoperable vortals. Progressively conceptualize interoperable systems without client-focused benefits. Quickly recaptiualize high-quality mindshare whereas backward-compatible e-commerce. Competently drive orthogonal materials vis-a-vis interoperable mindshare. Efficiently pursue cutting-edge e-services without covalent portals. Uniquely promote cooperative vortals rather than cross-media.</p>', '2021-11-03 10:21:06', 3, 1, 4, NULL),
-(20, 'Holisticly visualize', '', 'Intrinsicly create front-end e-services vis-a-vis stand-alone ROI. Competently visualize enterprise-wide deliverables via standardized functionalities. Professionally synthesize fully tested relationships vis-a-vis extensible portals. Appropriately enable professional \"outside the box\" thinking vis-a-vis business ROI. Energistically myocardinate high-payoff resources vis-a-vis emerging sources.\r\n\r\nHolisticly visualize client-centered.', '2021-11-09 16:48:46', 3, 1, 3, NULL),
-(21, 'Lorem ipsum!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:49:56', 3, 1, 1, NULL),
-(22, 'Hello world!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:50:23', 3, 1, 1, NULL),
-(23, 'Hello world!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:50:45', 3, 1, 1, NULL),
-(24, 'Hello world!', '', 'Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.', '2021-11-09 16:51:05', 3, 1, 1, NULL),
-(25, 'Hello world!', '', '<p>Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.</p>', '2021-11-09 16:51:32', 3, 1, 1, NULL),
-(26, 'Hello world!', '', '<p>Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.</p>', '2021-11-09 16:51:47', 3, 1, 1, NULL),
-(27, 'Hello world!', '', '<p>Phosfluorescently re-engineer effective communities and functional infomediaries. Progressively innovate bricks-and-clicks \"outside the box\" thinking whereas long-term high-impact processes. Competently benchmark functional paradigms vis-a-vis next-generation schemas. Phosfluorescently negotiate granular collaboration and idea-sharing whereas visionary processes. Dramatically exploit adaptive quality vectors and intermandated outsourcing.</p>', '2021-11-09 16:51:47', 3, 1, 1, NULL),
-(28, 'Hello world!', 'Lorem ipsum ', 'Competently unleash distinctive meta-services and emerging services. Completely supply quality communities whereas dynamic materials. Authoritatively restore economically sound applications with client-focused vortals. Compellingly brand client-focused e-markets for user friendly leadership. Uniquely matrix highly efficient value with sustainable value.</p>\r\n<p> </p>\r\n<p>Objectively disseminate value-added paradigms.</p>', '2021-11-16 09:25:02', 3, 1, 4, NULL);
+(3, 'Ciao la vida!', '', '&lt;p&gt;Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.&lt;/p&gt;', '2021-10-18 11:42:41', 3, 1, 2, NULL),
+(15, 'Hello world!', '', '&lt;p style=&quot;text-align: justify;&quot;&gt;Energistically maintain optimal models with frictionless systems. Rapidiously incubate standards compliant markets for leading-edge initiatives. Efficiently deploy innovative niche markets via backward-compatible alignments. Proactively deploy technically sound processes for 24/365 processes. Monotonectally provide access to efficient users with empowered collaboration and idea-sharing. Dramatically reintermediate resource sucking products for installed base outsourcing. Conveniently reinvent focused users after enterprise-wide manufactured products. Seamlessly redefine granular mindshare vis-a-vis reliable vortals. Distinctively maximize empowered total linkage vis-a-vis timely value. Collaboratively.&lt;/p&gt;', '2021-10-18 11:42:41', 3, 1, 1, NULL),
+(41, 'Bonjour tout le monde', 'Lorem ipsum', '', '2021-11-27 13:44:44', 3, 1, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -244,7 +210,7 @@ CREATE TABLE `site` (
 --
 
 INSERT INTO `site` (`id`, `name`, `description`, `charset`, `language`, `site_user`, `site_logo`) VALUES
-(1, 'Axel Buob | Développeur PHP/Symphony', 'Un blog développé en PHP de A à Z', 'utf-8', 'en_EN', 1, NULL);
+(1, 'Axel Buob | D&eacute;veloppeur PHP/Symphony', 'Un blog d&eacute;velopp&eacute; en PHP de A &agrave; Z', 'utf-8', 'en_EN', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -263,7 +229,7 @@ CREATE TABLE `skill` (
 --
 
 INSERT INTO `skill` (`id`, `name`, `class`) VALUES
-(1, 'PHP', 'fab fa-php'),
+(1, 'PHP jfedfjhds', 'fab fa-php'),
 (2, 'Javascript', 'fab fa-js'),
 (3, 'CSS', 'fab fa-css3'),
 (4, 'HTML', 'fab fa-html5'),
@@ -325,10 +291,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `confirmed_token`, `confirmed_at`, `reset_token`, `reset_at`, `job`, `about`, `first_name`, `last_name`, `city`, `twitter`, `linkedin`, `github`, `user_role`) VALUES
-(1, 'contact@axelbuob.fr', '$2y$10$f763hp1BT3GjQiMpI4QdaOdC8bFsKLZACuGM8cioFVMmbLS749MIS', NULL, '2021-10-21 13:54:41', NULL, NULL, 'Développeur PHP/Symphony', 'Fleuriste de 29 ans et développeur web autodidacte en transition professionnelle. Curieux, polyvalent et aillant un trés fort esprit d\'équipe.', 'Axel', 'Buob', 'Paris', 'http://twitter.com/axelbuob', 'http://linkedin.com/in/axelbuob', 'http://github.com/axelbuob', 1),
-(23, 'alt.cp-1ve7wg8@yopmail.com', '$2y$10$hk/DGwV941wFTaTWkaYOLuDTJ2/FTjfKSIcIahJo2dIFXza.4vEWG', NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, 1),
-(24, 'buobaxel@gmail.com', '$2y$10$Tq1rx6iPirldZvkLwHOlWuO4bg/MSw1YnjB/S1EyEvOH1/tj2GRTO', 'c4262cc28968eca46689e5949448fe47', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2),
-(25, 'yajiddeugugu-3969@yopmail.com', '$2y$10$uMZrgqIkogygOtEMcQsRPO9hunBBLOQ9DcCRC5W88rMtS5IdmjbVm', NULL, '2021-11-19 10:27:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2);
+(1, 'contact@axelbuob.fr', '$2y$10$G.eEONaKpsTNUSftSTfBf.Xf8SWav2RtWhh1FHHJJ9EhIY2FLG7/S', NULL, '2021-10-21 13:54:41', '44ba410bef7ff22f73efe373f2d93df7', '2021-11-27 14:14:15', 'Développeur PHP/Symphony', 'Fleuriste de 29 ans et développeur web autodidacte en transition professionnelle. Curieux, polyvalent et aillant un trés fort esprit d\'équipe.', 'Axel', 'Buob', 'Paris', 'http://twitter.com/axelbuob', 'http://linkedin.com/in/axelbuob', 'http://github.com/axelbuob', 1),
+(31, 'buobaxel@gmail.com', '$2y$10$QRLNqaCxFyarsPTItdBhIOYPCmqdyPI9LxgnE8eTA3Rd.AMjsAAWm', '', '2021-11-27 18:04:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -424,13 +388,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `experience`
@@ -448,7 +412,7 @@ ALTER TABLE `formation`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `interest`
@@ -460,7 +424,7 @@ ALTER TABLE `interest`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -490,7 +454,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
