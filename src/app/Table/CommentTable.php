@@ -53,4 +53,16 @@ class CommentTable extends \Core\Table\Table
             WHERE comment_post = ? AND comment.comment_status = 3"
         , [$post_id], null, false);
     }
+
+    public function findAllToDelete($post_id)
+    {
+        return $this->query(
+            "SELECT *
+            FROM comment 
+            WHERE comment_post = ?",
+            [$post_id],
+            null,
+            false
+        );
+    }
 }
